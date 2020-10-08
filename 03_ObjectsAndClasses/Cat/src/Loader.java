@@ -23,7 +23,7 @@ public class Loader
         System.out.println("Barsik weight AFTER feeding is " + barsik.getWeight());
 
         // кормим кота Воланда Бегемота
-        begemot.feed(333.0);
+        begemot.feed(444.0);
         System.out.println("Begemot weight AFTER feeding is " + begemot.getWeight());
         System.out.println();
 
