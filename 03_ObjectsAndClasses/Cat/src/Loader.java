@@ -8,7 +8,7 @@ public class Loader
         Cat lucifer = new Cat();
         Cat catInBoots = new Cat();
         Cat walkedByHimself = new Cat();
-        
+
         System.out.println("1st Step:");
         System.out.println("1. Barsik weight BEFORE feeding is " + barsik.getWeight());
         System.out.println("2. Begemot weight BEFORE feeding is " + begemot.getWeight());
@@ -23,7 +23,7 @@ public class Loader
         System.out.println("Barsik weight AFTER feeding is " + barsik.getWeight());
 
         // кормим кота Воланда Бегемота
-        barsik.feed(333.0);
+        begemot.feed(333.0);
         System.out.println("Begemot weight AFTER feeding is " + begemot.getWeight());
         System.out.println();
 
