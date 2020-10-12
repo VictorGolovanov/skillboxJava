@@ -10,6 +10,12 @@ public class Cat
     private double eatenAmount; // переменная для учета съеденного котами
     private static int count = 0; // переменная счетчик количества кошек
 
+    public static final int LEGS_COUNT = 4;
+    public static final int TAIL_COUNT = 1;
+    public static final int EYES_COUNT = 2;
+    public static final double MIN_WEIGHT = 1000.0;
+    public static final double MAX_WEIGHT = 9000.0;
+
     public Cat()
     {
         count++;
