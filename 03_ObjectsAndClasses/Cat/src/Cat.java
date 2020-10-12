@@ -17,6 +17,7 @@ public class Cat
         originWeight = weight;
         minWeight = 1000.0;
         maxWeight = 9000.0;
+        eatenAmount = 0.0; // предположим, что кошка еще ничего не ела и не пила
 
     }
 
@@ -81,6 +82,7 @@ public class Cat
     {
         // т.к. всякое увеличение веса связано с питанием и питьем:
         eatenAmount = weight - originWeight; // предположим, что сюда входит съеденное и выпитое
+        eatenAmount = +eatenAmount; // чтобы складывать все съеденное и выпитое
         if(eatenAmount >= 0)
         {
             return eatenAmount;
