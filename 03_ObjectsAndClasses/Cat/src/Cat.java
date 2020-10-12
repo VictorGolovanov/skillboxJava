@@ -7,6 +7,8 @@ public class Cat
     private double minWeight;
     private double maxWeight;
 
+    private double eatenAmount; // переменная для учета съеденного котами
+
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random();
@@ -51,5 +53,15 @@ public class Cat
         else {
             return "Playing";
         }
+    }
+    public Double getEatenFood() // возвращаем количество съеденной еды
+    {
+        eatenAmount = weight - originWeight;
+        return eatenAmount;
+    }
+    public void pee()
+    {
+        weight = weight - weight/575;
+        System.out.println("    Master, I did something... Clean my toilet, now!!!");
     }
 }
