@@ -4,23 +4,35 @@ public class Loader
     public static void main(String[] args)
     {
         Cat barsik = new Cat();
+        Cat barsik2 = new Cat();
+        Cat barsik3 = new Cat();
+        Cat barsik4 = new Cat();
+        System.out.println(Cat.getCount());
 
-        // учитываем съеденное
-        System.out.println("1st Step:");
-        System.out.println("Barsik weight BEFORE feeding is " + barsik.getWeight());
-        barsik.feed(150.0);
-        System.out.println("Barsik weight AFTER feeding is " + barsik.getWeight());
-        System.out.println("Barsik ate " + barsik.getEatenFood() + " g of food! :) Good boy!");
-        System.out.println();
+        barsik3.feed(1.0);
+        barsik3.meow();
+        barsik3.meow();
+        barsik3.meow();
+        barsik4.feed(200.0);
+        System.out.println(barsik4.getEatenFood());
+        System.out.println(barsik3.getEatenFood());
 
-        // отводим в туалет
-        System.out.println("2st Step:");
-        System.out.println("Barsik weight BEFORE 'pee-pee' is " + barsik.getWeight() + " g.");
-        for(int i = 3; i > 0; i--)
+
+        barsik.feed(1000.0);
+        while (!barsik.getStatus().equals("Dead"))
         {
-            barsik.pee();
+            barsik.meow();
         }
-        System.out.println("Barsik weight AFTER 'pee-pee' is " + barsik.getWeight() + " g.");
-        System.out.println();
+        System.out.println(barsik.getEatenFood());
+        barsik.pee();
+
+        while(!barsik2.getStatus().equals("Exploded"))
+        {
+            barsik2.feed(1000.0);
+        }
+        System.out.println(barsik2.getEatenFood());
+        System.out.println(Cat.getCount());
+        barsik2.pee();
+        System.out.println(barsik2.getWeight());
     }
 }
