@@ -69,6 +69,7 @@ public class Cat
         }
         else {
             weight = weight + amount;
+            drinkAmount += amount;
         }
     }
 
@@ -96,6 +97,11 @@ public class Cat
     public Double getEatenFood() // возвращаем количество съеденной еды
     {
         return eatenAmount;
+    }
+
+    public Double getDrinkAmount() // возвращаем количество выпитого
+    {
+        return drinkAmount;
     }
 
     public void pee()

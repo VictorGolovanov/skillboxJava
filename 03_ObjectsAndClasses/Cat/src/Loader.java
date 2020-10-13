@@ -22,6 +22,9 @@ public class Loader
         System.out.println(barsik.getEatenFood());
         System.out.println(barsik.getStatus());
         barsik.drink(12.0);
+        System.out.println(barsik.getDrinkAmount());
+        barsik.drink(12.0);
+        System.out.println(barsik.getDrinkAmount());
         barsik.feed(10000.0);
         System.out.println(barsik.getWeight());
         System.out.println(barsik.isWeightNormal());
