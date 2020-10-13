@@ -11,6 +11,7 @@ public class Cat
     private double drinkAmount; // давайте учтем и что кот выпил :)
     private static int count = 0; // переменная счетчик количества кошек
     private boolean isAlive; // состояние кота
+    private String name;
 
     public static final int LEGS_COUNT = 4;
     public static final int TAIL_COUNT = 1;
@@ -21,14 +22,32 @@ public class Cat
     public Cat()
     {
         count++;
+        //
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
-        minWeight = 1000.0;
-        maxWeight = 9000.0;
+        minWeight = MIN_WEIGHT;
+        maxWeight = MAX_WEIGHT;
         isAlive = true;
         eatenAmount = 0.0; // предположим, что кошка еще ничего не ела и не пила
 
     }
+
+    public Cat(Double weight)
+    {
+        this();
+        this.weight = weight;
+    }
+
+    public Cat(String name)
+    {
+        this();
+        this.name = name;
+    }
+
+    public String getName()
+        {
+            return name;
+        }
 
     public void meow()
     {
