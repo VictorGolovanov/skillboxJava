@@ -8,7 +8,9 @@ public class Cat
     private double maxWeight;
 
     private double eatenAmount; // переменная для учета съеденного котами
+    private double drinkAmount; // давайте учтем и что кот выпил :)
     private static int count = 0; // переменная счетчик количества кошек
+    private boolean isAlive; // состояние кота
 
     public static final int LEGS_COUNT = 4;
     public static final int TAIL_COUNT = 1;
@@ -23,15 +25,17 @@ public class Cat
         originWeight = weight;
         minWeight = 1000.0;
         maxWeight = 9000.0;
+        isAlive = true;
         eatenAmount = 0.0; // предположим, что кошка еще ничего не ела и не пила
 
     }
 
     public void meow()
     {
-        if(weight >= maxWeight || weight <= minWeight) // этим условием проверяем, существует ли кот на данный момент
+        if(!isAlive) // так видимо лучше?
+        //(weight >= maxWeight || weight <= minWeight) // этим условием проверяем, существует ли кот на данный момент
         {
-            System.out.println("Unexisting creature cannot do anything!");
+            System.out.println("Unexisting creature can't meow :(");
         }
         else {
             weight = weight - 1;
@@ -41,20 +45,27 @@ public class Cat
 
     public void feed(Double amount)
     {
-        if(weight >= maxWeight || weight <= minWeight)
+        if(isAlive)
         {
-            System.out.println("Unexisting creature cannot do anything!");
+            weight = weight + amount;    // Так подсказала записать среда разработки
+            isAlive = isWeightNormal();  // я сначала написал if else со скобками
+            eatenAmount += amount;
+            if(!isAlive)
+            {
+                count--;
+            }
         }
-        else{
-            weight = weight + amount;
-        }
+        else
+            {
+                System.out.println("Unexisting creature can't eat :(");
+            }
     }
 
     public void drink(Double amount)
     {
-        if(weight >= maxWeight || weight <= minWeight)
+        if(!isAlive)
         {
-            System.out.println("Unexisting creature cannot do anything!");
+            System.out.println("Unexisting creature can't drink :(");
         }
         else {
             weight = weight + amount;
@@ -69,11 +80,9 @@ public class Cat
     public String getStatus()
     {
         if(weight < minWeight) {
-            count--;
             return "Dead";
         }
         else if(weight > maxWeight) {
-            count--;
             return "Exploded";
         }
         else if(weight > originWeight) {
@@ -86,25 +95,14 @@ public class Cat
 
     public Double getEatenFood() // возвращаем количество съеденной еды
     {
-        // т.к. всякое увеличение веса связано с питанием и питьем:
-        eatenAmount = weight - originWeight; // предположим, что сюда входит съеденное и выпитое
-        eatenAmount = +eatenAmount; // чтобы складывать все съеденное и выпитое
-        if(eatenAmount >= 0)
-        {
-            return eatenAmount;
-        }
-        else // если кот после приема пищи помяукал и его вес ушел в минус,
-             // чтобы не было возвращено отрицательное значение
-            {
-                return null;
-            }
+        return eatenAmount;
     }
 
     public void pee()
     {
-        if(weight >= maxWeight || weight <= minWeight)
+        if(!isAlive)
         {
-            System.out.println("Unexisting creature cannot do anything!");
+            System.out.println("Unexisting creature can't go to the toilet :(");
         }
         else
         {
@@ -115,5 +113,10 @@ public class Cat
     public static int getCount()
     {
         return count;
+    }
+
+    public boolean isWeightNormal()
+    {
+        return (weight> MIN_WEIGHT && weight <MAX_WEIGHT);
     }
 }
