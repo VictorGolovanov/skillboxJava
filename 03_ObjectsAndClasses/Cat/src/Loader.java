@@ -22,6 +22,13 @@ public class Loader
         gav.feed(150.501);
         System.out.println(gav.getWeight());
         System.out.println(gav.getEatenFood());
+        gav.setName("Gav");
+        System.out.println("Kiten name is " + gav.getName());
+        gav.setColor(Color.BLACK);
+        System.out.println(gav.getColor());
+
+        barsik.setColor(Color.SANDY);
+        System.out.println(barsik.getColor());
     }
     private static Cat getKitten()
     {

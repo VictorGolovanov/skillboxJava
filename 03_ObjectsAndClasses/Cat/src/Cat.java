@@ -12,6 +12,7 @@ public class Cat
     private static int count = 0; // переменная счетчик количества кошек
     private boolean isAlive; // состояние кота
     private String name;
+    private Color catColor; // переменная, где хранится цвет кошки
 
     public static final int LEGS_COUNT = 4;
     public static final int TAIL_COUNT = 1;
@@ -41,6 +42,11 @@ public class Cat
     public Cat(String name)
     {
         this();
+        this.name = name;
+    }
+
+    public void setName(String name)
+    {
         this.name = name;
     }
 
@@ -143,5 +149,15 @@ public class Cat
     public boolean isWeightNormal()
     {
         return (weight> MIN_WEIGHT && weight <MAX_WEIGHT);
+    }
+
+    public void setColor(Color catColor)
+    {
+        this.catColor = catColor;
+    }
+
+    public Color getColor()
+    {
+        return catColor;
     }
 }
