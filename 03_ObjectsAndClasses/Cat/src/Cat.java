@@ -37,6 +37,7 @@ public class Cat
     {
         this();
         this.weight = weight;
+        this.originWeight = weight;
     }
 
     public Cat(String name)

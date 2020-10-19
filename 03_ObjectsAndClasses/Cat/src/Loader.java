@@ -4,6 +4,11 @@ public class Loader
     public static void main(String[] args)
     {
         // это код для тестов котов :)
+
+        Cat cat1 = new Cat(2134.5);
+        System.out.println(cat1.getWeight());
+        System.out.println();
+
         Cat barsik = new Cat(3000.0);
         System.out.println(barsik.getWeight());
         System.out.println(barsik.getDrinkAmount());
