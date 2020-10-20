@@ -1,12 +1,14 @@
 public class Main {
 
   public static void main(String[] args) {
-    Container container = new Container();
-    container.count += 7843;
+    Container container = new Container(); // раньше контейнер содержал объект класса Integer
+    // теперь в контейнере примитив int и код хотя бы запустился и выдал 0
+    container.count += 7843; // а это вообще зачем? Собственно как и класс Container?
 
     int sum = sumDigits(7843);
 
     System.out.println(sum);
+    System.out.println(sumDigits(0));
   }
 
   /* Реализуйте метод sumDigits который возвращает сумму цифр числа, пример:
@@ -19,8 +21,19 @@ public class Main {
   В противном случае тестовый метод не сможет проверить ваш код
    */
 
+
   public static int sumDigits(Integer number) {
-    //@TODO: write code here and delete TODO line
-    return 0;
+    if(number == null)
+    {
+      return -1;
+    }
+    else {
+      int result = 0;
+      while (number > 0) {
+        result += number % 10;
+        number = number / 10;
+      }
+      return result;
+    }
   }
 }

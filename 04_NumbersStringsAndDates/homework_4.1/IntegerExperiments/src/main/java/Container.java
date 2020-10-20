@@ -1,4 +1,8 @@
 public class Container {
 
-  public Integer count;
+  public int count; // 2. Найдите ошибку, исправьте её заменой Integer на int. (?)
+                    /*
+                    Заменил тут объект на примитив и код хотя бы запустился
+                    однако я не понял почему
+                     */
 }
