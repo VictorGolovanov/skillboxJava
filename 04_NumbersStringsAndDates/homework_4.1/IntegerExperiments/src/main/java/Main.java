@@ -1,14 +1,13 @@
 public class Main {
 
   public static void main(String[] args) {
-    Container container = new Container(); // раньше контейнер содержал объект класса Integer
-    // теперь в контейнере примитив int и код хотя бы запустился и выдал 0
-    container.count += 7843; // а это вообще зачем? Собственно как и класс Container?
+    Container container = new Container();
+
+    container.count += 7843;
 
     int sum = sumDigits(7843);
 
     System.out.println(sum);
-    System.out.println(sumDigits(0));
   }
 
   /* Реализуйте метод sumDigits который возвращает сумму цифр числа, пример:
@@ -21,7 +20,32 @@ public class Main {
   В противном случае тестовый метод не сможет проверить ваш код
    */
 
+  public static int sumDigits(Integer number)
+  {
+    int result = 0;
+    if(number == null)
+    {
+      return -1;
+    }
+    else
+      {
+      // создадим (или только объявим?) массив из элементов,
+      // которые являются строковыми значениями цифр переданного числа
+      String [] numString = Integer.toString(number).split("");
 
+      // теперь с помощью цикла будем переводить каждый элемент массива обратно в int
+      // и суммировать их в result
+      int i = 0; // счетчик и индекс по которому будем парсить элементы numString
+      while (i < numString.length)
+      {
+        result += Integer.parseInt(numString[i]);
+        i++;
+      }
+      }
+    return result;
+  }
+  /*
+  сохраню это решение :)
   public static int sumDigits(Integer number) {
     if(number == null)
     {
@@ -35,5 +59,5 @@ public class Main {
       }
       return result;
     }
-  }
+  }*/
 }
