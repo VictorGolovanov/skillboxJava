@@ -29,16 +29,17 @@ public class Main {
     }
     else
       {
-      // создадим (или только объявим?) массив из элементов,
-      // которые являются строковыми значениями цифр переданного числа
-      String [] numString = Integer.toString(number).split("");
+      // создадим строку из полученного числа,
+      String numString = Integer.toString(number);
 
+      // теперь создадим массив из char элементов
+      char[] numChar = numString.toCharArray();
       // теперь с помощью цикла будем переводить каждый элемент массива обратно в int
       // и суммировать их в result
-      int i = 0; // счетчик и индекс по которому будем парсить элементы numString
-      while (i < numString.length)
+      int i = 0; // счетчик и индекс по которому будем получать целочисленные значения из char
+      while (i < numChar.length)
       {
-        result += Integer.parseInt(numString[i]);
+        result += Character.getNumericValue(numChar[i]); // здесь делаем опять числа
         i++;
       }
       }
