@@ -5,8 +5,12 @@
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.1/IntegerExperiments/01_sumdigits.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.1/IntegerExperiments/01_sumdigits.iml" />
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/Airport/Airport.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/Airport/Airport.iml" />
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/Cat/Cat.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/Cat/Cat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.3/GeometryCalculator/GeometryCalculator.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.3/GeometryCalculator/GeometryCalculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/03_ObjectsAndClasses/RoadController/RoadController.iml" filepath="$PROJECT_DIR$/03_ObjectsAndClasses/RoadController/RoadController.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java_basics.iml" filepath="$PROJECT_DIR$/.idea/java_basics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max/min_max.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max/min_max.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max_v.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max_v.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max_values/min_max_values.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max_values/min_max_values.iml" />
     </modules>
   </component>
 </project>

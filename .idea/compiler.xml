@@ -7,10 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="01_sumdigits" />
+        <module name="GeometryCalculator" />
+        <module name="min_max_values" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="01_sumdigits" target="11" />
+      <module name="GeometryCalculator" target="11" />
+      <module name="min_max_values" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
