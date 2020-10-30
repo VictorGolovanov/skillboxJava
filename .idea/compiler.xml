@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="TrucksContainersAndBoxes" />
+        <module name="FullNameFormatter" />
         <module name="01_sumdigits" />
         <module name="GeometryCalculator" />
         <module name="min_max_values" />
@@ -15,6 +16,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="01_sumdigits" target="11" />
+      <module name="FullNameFormatter" target="11" />
       <module name="GeometryCalculator" target="11" />
       <module name="min_max_values" target="1.5" />
       <module name="TotalEarningsCalculator" target="11" />
