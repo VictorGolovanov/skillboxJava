@@ -10,6 +10,7 @@
         <module name="FullNameFormatter" />
         <module name="01_sumdigits" />
         <module name="GeometryCalculator" />
+        <module name="MaskingInformation" />
         <module name="min_max_values" />
         <module name="TotalEarningsCalculator" />
       </profile>
@@ -18,6 +19,7 @@
       <module name="01_sumdigits" target="11" />
       <module name="FullNameFormatter" target="11" />
       <module name="GeometryCalculator" target="11" />
+      <module name="MaskingInformation" target="11" />
       <module name="min_max_values" target="1.5" />
       <module name="TotalEarningsCalculator" target="11" />
       <module name="TrucksContainersAndBoxes" target="11" />
