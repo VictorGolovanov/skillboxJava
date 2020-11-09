@@ -1,22 +1,27 @@
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println(splitTextInToWords("qwerty, ... 12?3 qwerty; 456. Abrakadabra 789 djn!"));
+    System.out.println(splitTextInToWords("qwerty, ... 12?3 QWERTY; 456. Abra-kadabra 789 d-jn!"));
   }
 
   public static String splitTextInToWords(String text) {
     //TODO реализуйте метод
     String clearTextNum = text.replaceAll("\\d+", ""); // сначала цифры
-    String clearTextAll = clearTextNum.replaceAll("[.,;:`!?\\-]", ""); // потом знаки препинания
+    String clearTextAll = clearTextNum.replaceAll("[.,;:!?]", ""); // потом знаки препинания
+    String clearText = clearTextAll.replaceAll("\\-+", " ");
     // Заменим все пробелы между словами (сколько бы их ни было) на один пробел между словами
-    String goodString = clearTextAll.replaceAll("\\s+", " ");
+    String goodString = clearText.replaceAll("\\s+", " ");
     String[] onlyWords = goodString.split(" ");
-    // а как вывести наш массив через return?
-    /*for(int i = 0; i < onlyWords.length; i++)
+
+    // так как метод требует String, попробовал сделать строку
+
+    StringBuffer stringBuffer = new StringBuffer();
+    for(int i = 0; i < onlyWords.length; i++)
     {
-      System.out.println(onlyWords[i]);
-    }*/
-    return onlyWords;
+      stringBuffer.append(onlyWords[i] + "\n");
+    }
+    String s = stringBuffer.toString().trim(); // чтобы убрать лишний перенос строки и получить строку
+    return s;
   }
 
 }
