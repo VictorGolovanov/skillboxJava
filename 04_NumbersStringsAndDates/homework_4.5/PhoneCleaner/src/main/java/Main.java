@@ -1,4 +1,8 @@
+// тесты не менял
+
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -46,6 +50,14 @@ public class Main {
           isFirstNumCorrect = true;
         }
 
+        // вторая цифра в российских номерах должна быть 9. Проверим, так ли это в нашем случае
+        boolean isSecondNumberCorrect = false;
+        char secondNum = result.charAt(1);
+        if(secondNum == '9')
+        {
+          isSecondNumberCorrect = true;
+        }
+
         // узнаем, хватает ли цифр для составления номера
         boolean hasEnoughNumbers = false;
         char[] countNumber = rusPhoneNumber.toCharArray();
@@ -58,10 +70,20 @@ public class Main {
           result = "7" + rusPhoneNumber;
           hasEnoughNumbers = true;
           isFirstNumCorrect = true;
+          if(secondNum == '9')
+          {
+            isSecondNumberCorrect = true;
+          }
         }
-        if(hasEnoughNumbers & isFirstNumCorrect)
+        if(hasEnoughNumbers & isFirstNumCorrect & isSecondNumberCorrect)
         {
-          System.out.println(result);
+          // System.out.println(result);
+          // хотел реализовать группировку по кол-ву цифр
+          // первая группа - 1 цифра(то есть 7), вторая группа - 3 следующие цифры и т.д.
+          Pattern p = Pattern.compile("(\\d{1,1})(\\d{3,3})(\\d{3,3})(\\d{2,2})(\\d{2,2})");
+          Matcher m = p.matcher(result);
+          String niceFormat = m.replaceAll("+$1 ($2) $3 $4-$5");
+          System.out.println(niceFormat);
         }
         else{
           System.out.println("Неверный формат номера");
