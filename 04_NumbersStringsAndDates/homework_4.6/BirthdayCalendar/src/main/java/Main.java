@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Date;
@@ -22,7 +24,25 @@ public class Main {
         //0 - 31.12.1990 - Mon
         //1 - 31.12.1991 - Tue
 
-        month -= 1; // чтобы в Java корректно обрабатывались результаты.
+        StringBuffer result = new StringBuffer(); // сюда будем сохранять наш результат
+        LocalDate birthday = LocalDate.of(year, month, day); // "нулевой" день рождения
+        LocalDate today = LocalDate.now(); // сегодняшний день
+
+        // формат вывода
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy - E", new Locale("en"));
+
+        int i = 0; // наш счетчик
+        while(today.isAfter(birthday) | today.isEqual(birthday))
+        {
+            result.append("\n" + i + " - " + birthday.format(formatter));
+            birthday = birthday.plusYears(1);
+            i++;
+
+
+        }
+        return result.toString();
+
+        /*month -= 1; // чтобы в Java корректно обрабатывались результаты.
         StringBuffer result = new StringBuffer();
         // посчитаем, сколько лет прошло с момента дня рождения
         Calendar currentDate = Calendar.getInstance(); // создадим текущую дату в календаре
@@ -44,6 +64,6 @@ public class Main {
                 birthdayDate = birthday.getTime();
             }
         }
-        return result.toString();
+        return result.toString();*/
     }
 }
