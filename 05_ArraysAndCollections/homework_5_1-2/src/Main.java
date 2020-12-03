@@ -55,7 +55,8 @@ public class Main {
         }
 
         System.out.println("Температуры пациентов: " + listOfTemperatures);
-        System.out.println("Средняя температура: " + averageTemperature);
+        //System.out.println("Средняя температура: " + averageTemperature);
+        System.out.printf("Средняя температура: %.02f \u2103\n", averageTemperature);
         System.out.println("Количество здоровых: " + healthCount);
     }
 }
