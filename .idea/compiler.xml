@@ -19,6 +19,7 @@
         <module name="BirthdayCalendar" />
         <module name="GeometryCalculator" />
         <module name="min_max_values" />
+        <module name="TodoList" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,6 +33,7 @@
       <module name="min_max_values" target="1.5" />
       <module name="PhoneCleaner" target="11" />
       <module name="SplitText" target="11" />
+      <module name="TodoList" target="11" />
       <module name="TotalEarningsCalculator" target="11" />
       <module name="TotalEarningsCalculatorReqExp" target="11" />
       <module name="TrucksContainersAndBoxes" target="11" />
