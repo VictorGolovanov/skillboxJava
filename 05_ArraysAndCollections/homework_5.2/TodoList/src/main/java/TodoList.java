@@ -17,16 +17,9 @@ public class TodoList {
 
         // если указанный индекс не существует, то добавляем просто в конец списка
 
-        if(index < todoList.size())
+        if(index >= 0 && index < todoList.size())
         {
-            if(index < 0)
-            {
-                System.out.println("Отрицательный индекс не учитывается программой");
-                todoList.add(todo);
-            }
-            else{
-                todoList.add(index, todo);
-            }
+            todoList.add(index, todo);
         }
         else {
             todoList.add(todo);
@@ -37,19 +30,13 @@ public class TodoList {
     public void edit(String todo, int index) {
         // TODO: заменить дело на index переданным todo индекс,
         //  проверьте возможность изменения
-        if(index < todoList.size())
+        if(index < todoList.size() && index >= 0)
         {
-            if(index < 0)
-            {
-                System.out.println("Нельзя указывать отрицательный индекс!");
-            }
-            else{
-                String oldDeal = todoList.get(index);
-                todoList.set((Math.abs(index)), todo);
-                System.out.println("Дело " + oldDeal + "заменено на дело " + todo);
-            }
+            String oldDeal = todoList.get(index);
+            todoList.set((Math.abs(index)), todo);
+            System.out.println("Дело " + oldDeal + "заменено на дело " + todo);
         }
-        // если указанного индекса нет
+        // если указанного индекса нет (в том числе и ввод отрициательного числа)
         else{
             System.out.println("У вас не записано дело № " + index + " чтобы его редактировать!");
         }
@@ -59,17 +46,11 @@ public class TodoList {
         // TODO: удалить дело находящееся по переданному индексу,
         //  проверьте возможность удаления дела
 
-        if(index < todoList.size())
+        if(index < todoList.size() && index >= 0)
         {
-            if(index < 0)
-            {
-                System.out.println("Нельзя указывать отрицательный индекс!");
-            }
-            else{
-                String oldDeal = todoList.get(index);
-                todoList.remove(Math.abs(index));
-                System.out.println("Дело " + oldDeal + "удалено");
-            }
+            String oldDeal = todoList.get(index);
+            todoList.remove(Math.abs(index));
+            System.out.println("Дело " + oldDeal + "удалено");
         }
         // если указанного индекса нет
         else{
@@ -92,7 +73,8 @@ public class TodoList {
             }
         }
 
-        return new ArrayList<>();
+        // сделал так, тесты проходит
+        return todoList;
     }
 
     // метод отбрасывает от строки команду и индекс, оставляя только "чистое" дело
