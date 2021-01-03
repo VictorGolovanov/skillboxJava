@@ -7,7 +7,7 @@ public class TodoList {
     public void add(String todo) {
         // TODO: добавьте переданное дело в конец списка
         todoList.add(todo);
-        System.out.println("Дообавлено дело " + todo);
+        System.out.println("Добавлено дело " + todo);
 
     }
 
@@ -24,7 +24,7 @@ public class TodoList {
         else {
             todoList.add(todo);
         }
-        System.out.println("Дообавлено дело " + todo);
+        System.out.println("Добавлено дело " + todo);
     }
 
     public void edit(String todo, int index) {
