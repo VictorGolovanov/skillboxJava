@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static PhoneBook phoneBook = new PhoneBook();
+    public static PhoneBook PhoneBook = new PhoneBook();
 
     public static void main(String[] args) {
 
@@ -21,31 +21,43 @@ public class Main {
 
             if(input.equals(commands[0]))
             {
-                // еще не работает
-                phoneBook.getAllContacts();
+                PhoneBook.getAllContacts();
+                //continue;
             }
 
-            // если сначала введем имя (сырая версия)
-            // еще не написал проверку, есть ли имя в телефонной книге
-            if(phoneBook.isLatin(input) || phoneBook.isRussian(input))
+            if((PhoneBook.isLatin(input) || PhoneBook.isRussian(input)) && !input.equals(commands[0])) // if name
             {
-                String name = input;
-                // и еще проверить, есть ли уже этот контакт в книге
-                System.out.println("Введите номер телефона для абонента " + name + ":");
-                String phoneInput = scanner.nextLine();
-                if(phoneBook.isContainNumber(phoneInput))
+                // если сначала введем имя (сырая версия)
+                // проверяем, есть ли в книге контакт
+                if(PhoneBook.phoneBook.containsKey(input)) // выглядит некрасиво, подумаю, как исправить
                 {
-                    String phoneNumber = phoneInput;
-                    phoneBook.addContact(phoneNumber, name);
+                    PhoneBook.getPhonesByName(input);
                 }
-                else{
-                    System.out.println("Неверный формат ввода");
+                else if(PhoneBook.isLatin(input) || PhoneBook.isRussian(input))
+                {
+                    String name = input;
+                    // и еще проверить, есть ли уже этот контакт в книге
+                    System.out.println("Введите номер телефона для абонента " + name + ":");
+                    String phoneInput = scanner.nextLine();
+                    if(PhoneBook.isContainNumber(phoneInput))
+                    {
+                        String phoneNumber = phoneInput;
+                        PhoneBook.addContact(phoneNumber, name);
+                    }
+                    else{
+                        System.out.println("Неверный формат ввода");
+                    }
                 }
             }
-            // ...
-            // а потом примерно также, если сначала введем номер телефона
-            // или я иду принципиально не так
-            // и вся основная работа по анализу ввода должна быть реализована в методах PhoneBook.java ?
+
+            if((PhoneBook.isContainNumber(input)) && !input.equals(commands[0])) // if numbers
+            {
+                //todo
+            }
+
+
+
+
         }
     }
 }

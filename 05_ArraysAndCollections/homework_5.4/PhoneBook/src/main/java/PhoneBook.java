@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -12,45 +13,84 @@ public class PhoneBook {
         boolean isNumber = false;
         boolean isName = false;
 
-        if(phone.matches("(7{1})(9{1})(\\d{2})(\\d{3})(\\d{4})"))
+        if(isContainNumber(phone))
+                //phone.matches("(7{1})(9{1})(\\d{2})(\\d{3})(\\d{4})"))
         {
             isNumber = true;
-            System.out.println("ok!");
+            System.out.println("ok! - phone is phone :)");
         }
-        if(name.matches("[а-яА-ЯёЁ]+"))
+        if(isRussian(name))
+                //name.matches("[а-яА-ЯёЁ]+"))
         {
             isName = true;
-            System.out.println("ok!");
+            System.out.println("ok! - name has russian letters");
         }
-        else if(name.matches("[a-zA-Z]+"))
+        else if(isLatin(name))
+                //name.matches("[a-zA-Z]+"))
         {
             isName = true;
-            System.out.println("ok!");
+            System.out.println("ok! - name has latin letters");
         }
         if(isNumber && isName)
         {
+            System.out.println("Contact added! :)");
             phoneBook.put(name, phone);
         }
 
 
     }
 
+    //not ok
     public String getNameByPhone(String phone) {
         // формат одного контакта "Имя - Телефон"
         // если контакт не найдены - вернуть пустую строку
-        return "";
+        if(!phoneBook.containsValue(phone))
+        {
+            System.out.println("В базе нет контакта с номером: " + phone);
+            return "";
+        }
+        else
+            {
+                // как получить ключ по значению?..
+                return "";
+            }
     }
 
+    //ok
     public Set<String> getPhonesByName(String name) {
         // формат одного контакта "Имя - Телефон"
         // если контакт не найден - вернуть пустой TreeSet
-        return new TreeSet<>();
+        if(!phoneBook.containsKey(name))
+        {
+            return new TreeSet<>();
+        }
+        else
+            {
+                TreeSet<String> oneContact = new TreeSet<>();
+                oneContact.add(name + " - " + phoneBook.get(name));
+                oneContact.forEach(System.out::println);
+                return oneContact;
+            }
     }
 
+    //ok
     public Set<String> getAllContacts() {
         // формат одного контакта "Имя - Телефон"
         // если контактов нет в телефонной книге - вернуть пустой TreeSet
-        return new TreeSet<>();
+        if(phoneBook.isEmpty())
+        {
+            return new TreeSet<>();
+        }
+        else
+            {
+                TreeSet<String> allContacts = new TreeSet<>();
+                for(Map.Entry<String, String> entry : phoneBook.entrySet())
+                {
+                    allContacts.add(entry.getKey() + " - " + entry.getValue());
+                }
+                allContacts.forEach(System.out::println);
+                return allContacts;
+            }
     }
 
     // для проверки ввода
@@ -67,5 +107,4 @@ public class PhoneBook {
     public boolean isRussian(String name) {
         return name.matches("[а-яА-ЯёЁ]+");
     }
-
 }
