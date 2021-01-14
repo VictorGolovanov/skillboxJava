@@ -14,35 +14,28 @@ public class Main {
         while(true)
         {
             System.out.println("Введите номер, имя или команду:");
+            System.out.println("Формат номера телефона: 79991234567");
             String input = scanner.nextLine();
             if (input.equals(commands[1])) {
                 break;
             }
 
-            if(input.equals(commands[0]))
-            {
-                PhoneBook.getAllContacts();
-                //continue;
-            }
-
+            // если сначала введем имя
             if((PhoneBook.isLatin(input) || PhoneBook.isRussian(input)) && !input.equals(commands[0])) // if name
             {
-                // если сначала введем имя (сырая версия)
                 // проверяем, есть ли в книге контакт
-                if(PhoneBook.phoneBook.containsKey(input)) // выглядит некрасиво, подумаю, как исправить
+                if(PhoneBook.phoneBook.containsValue(input)) //
                 {
                     PhoneBook.getPhonesByName(input);
                 }
                 else if(PhoneBook.isLatin(input) || PhoneBook.isRussian(input))
                 {
-                    String name = input;
                     // и еще проверить, есть ли уже этот контакт в книге
-                    System.out.println("Введите номер телефона для абонента " + name + ":");
+                    System.out.println("Введите номер телефона для абонента " + input + ":");
                     String phoneInput = scanner.nextLine();
                     if(PhoneBook.isContainNumber(phoneInput))
                     {
-                        String phoneNumber = phoneInput;
-                        PhoneBook.addContact(phoneNumber, name);
+                        PhoneBook.addContact(phoneInput, input);
                     }
                     else{
                         System.out.println("Неверный формат ввода");
@@ -50,14 +43,35 @@ public class Main {
                 }
             }
 
+            // если введем номер телефона
             if((PhoneBook.isContainNumber(input)) && !input.equals(commands[0])) // if numbers
             {
-                //todo
+                // проверяем, есть ли в книге контакт
+                if(PhoneBook.phoneBook.containsKey(input)) //
+                {
+                    PhoneBook.getNameByPhone(input);
+                }
+                else
+                {
+                    System.out.println("У вас не сохранен контакт с номером: " + input + ". Введите имя, чтобы записать контакт.");
+                    String nameInput = scanner.nextLine();
+                    if(PhoneBook.isRussian(nameInput) || PhoneBook.isLatin(nameInput))
+                    {
+                        PhoneBook.addContact(input, nameInput);
+                    }
+                }
             }
 
+            // LIST
+            if(input.equals(commands[0]))
+            {
+                PhoneBook.getAllContacts();
+            }
 
-
-
+            // for bad input
+            else if (!PhoneBook.isContainNumber(input) && !PhoneBook.isLatin(input) && !PhoneBook.isRussian(input) && !input.equals(commands[0])){
+                System.out.println("Неверный формат ввода!");
+            }
         }
     }
 }
