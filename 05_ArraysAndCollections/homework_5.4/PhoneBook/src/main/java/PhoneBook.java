@@ -1,11 +1,13 @@
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.time.LocalTime;
+import java.util.*;
 
 public class PhoneBook {
 
     TreeMap<String, String> phoneBook = new TreeMap<>();
+
+    private static final LocalTime DAY_TIME = LocalTime.of(11,0);
+    private static final LocalTime EVENING_TIME = LocalTime.of(18,0);
+    private static final LocalTime NIGHT_TIME = LocalTime.of(23,0);
 
     public void addContact(String phone, String name) {
         // проверьте корректность формата имени и телефона
@@ -62,9 +64,7 @@ public class PhoneBook {
         }
         else
             {
-                //to rewrite!
                 TreeSet<String> oneContact = new TreeSet<>();
-
                 for(Map.Entry<String, String> entry : phoneBook.entrySet())
                 {
                     if(name.equals(entry.getValue()))
@@ -72,6 +72,7 @@ public class PhoneBook {
                         oneContact.add(entry.getValue() + " - " + entry.getKey());
                     }
                 }
+                System.out.println(oneContact);
                 return oneContact;
             }
     }
@@ -86,12 +87,19 @@ public class PhoneBook {
         }
         else
             {
-                // вероятно тут нужно наколодовать,
-                // чтобы получился вывод типа: Луций Корнелий Сулла - 79991234567, 79871234560, ...
-                TreeSet<String> allContacts = new TreeSet<>();
+                Map<String, List<String>> contactsByName = new TreeMap<>();
                 for(Map.Entry<String, String> entry : phoneBook.entrySet())
                 {
-                    allContacts.add(entry.getValue() + " - " + entry.getKey());
+                    if(contactsByName.get(entry.getValue()) == null)
+                    {
+                        contactsByName.put(entry.getValue(), new ArrayList<>());
+                    }
+                    contactsByName.get(entry.getValue()).add(entry.getKey());
+                }
+                TreeSet<String> allContacts = new TreeSet<>();
+                for(Map.Entry<String, List<String>> entry : contactsByName.entrySet())
+                {
+                    allContacts.add(entry.getKey() + " - " + String.join(", ", entry.getValue()));
                 }
                 allContacts.forEach(System.out::println);
                 return allContacts;
@@ -111,5 +119,21 @@ public class PhoneBook {
 
     public boolean isRussian(String name) {
         return name.matches("[а-яА-ЯёЁ\\s]+");
+    }
+    public String getHelloString(LocalTime curTime)
+    {
+        if(curTime.isBefore(DAY_TIME))
+        {
+            return "Доброе утро!";
+        }
+        else if (curTime.isBefore(EVENING_TIME)) {
+            return "Добрый день!";
+        }
+        else if(curTime.isBefore(NIGHT_TIME)){
+            return "Добрый вечер!";
+        }
+        else{
+            return "Доброй ночи!";
+        }
     }
 }
