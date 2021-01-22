@@ -19,4 +19,28 @@ public class BankAccount {
       moneyAmount -= amountToTake;
     }
   }
+
+  public boolean send(BankAccount receiver, double amount)
+  {
+    double moneyToSend = amount;
+    boolean isSent = false;
+    if(amount > 0.0)
+    {
+      if(moneyAmount > moneyToSend)
+      {
+        receiver.put(moneyToSend);
+        moneyAmount -= moneyToSend;
+        isSent = true;
+      }
+      else
+        {
+          System.out.println("Операция не может быть выполнена!");
+          if(amount > moneyAmount)
+          {
+            System.out.println("\t\t\t\t\t\t\t\tнедостаточно средств!");
+          }
+        }
+    }
+    return isSent;
+  }
 }
