@@ -18,6 +18,7 @@
         <module name="FullNameFormatter" />
         <module name="01_sumdigits" />
         <module name="FullNameFormatterRegExp" />
+        <module name="Inheritance1" />
         <module name="CoolNumber" />
         <module name="BirthdayCalendar" />
         <module name="GeometryCalculator" />
@@ -33,6 +34,7 @@
       <module name="FullNameFormatter" target="11" />
       <module name="FullNameFormatterRegExp" target="11" />
       <module name="GeometryCalculator" target="11" />
+      <module name="Inheritance1" target="11" />
       <module name="MaskingInformation" target="11" />
       <module name="MaskingInformationReqExp" target="11" />
       <module name="min_max_values" target="1.5" />
