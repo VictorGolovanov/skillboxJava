@@ -114,24 +114,16 @@ public class CoolNumbers {
 
     public static boolean bruteForceSearchInList(List<String> list, String number) {
         boolean isFoundBrute = false;
-        long tBrute = System.nanoTime();
         if (list.contains(number)) {
-            System.out.println("Поиск перебором: номер найден, поиск занял: " + (System.nanoTime() - tBrute) + " нс.");
             isFoundBrute = true;
-        } else {
-            System.out.println("Поиск перебором: номер не найден, поиск занял: " + (System.nanoTime() - tBrute) + " нс.");
         }
         return isFoundBrute;
     }
 
     public static boolean binarySearchInList(List<String> sortedList, String number) {
         boolean isFoundBinary = false;
-        long timeBinary = System.nanoTime();
         if (Collections.binarySearch(sortedList, number) >= 0) {
-            System.out.println("Бинарный поиск: номер найден, поиск занял: " + (System.nanoTime() - timeBinary) + " нс.");
             isFoundBinary = true;
-        } else {
-            System.out.println("Бинарный поиск: номер не найден, поиск занял: " + (System.nanoTime() - timeBinary) + " нс.");
         }
         return isFoundBinary;
     }
@@ -139,24 +131,16 @@ public class CoolNumbers {
 
     public static boolean searchInHashSet(HashSet<String> hashSet, String number) {
         boolean isFoundInHash = false;
-        long timeHash = System.nanoTime();
         if (hashSet.contains(number)) {
-            System.out.println("Поиск в HashSet: номер найден, поиск занял: " + (System.nanoTime() - timeHash) + "нс");
             isFoundInHash = true;
-        } else {
-            System.out.println("Поиск в HashSet: номер не найден, поиск занял: " + (System.nanoTime() - timeHash) + "нс");
         }
         return isFoundInHash;
     }
 
     public static boolean searchInTreeSet(TreeSet<String> treeSet, String number) {
         boolean isFoundInTree = false;
-        long timeTree = System.nanoTime();
-        if (treeSet.contains(number)) {
-            System.out.println("Поиск в TreeSet: номер найден, поиск занял: " + (System.nanoTime() - timeTree) + " нс.");
+        if (treeSet.contains(number)){
             isFoundInTree = true;
-        } else {
-            System.out.println("Поиск в TreeSet: номер не найден, поиск занял: " + (System.nanoTime() - timeTree) + " нс.");
         }
         return isFoundInTree;
     }

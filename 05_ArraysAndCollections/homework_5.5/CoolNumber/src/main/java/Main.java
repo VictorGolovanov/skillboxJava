@@ -7,8 +7,9 @@ public class Main {
 
         System.out.println("Здравствуйте!");
         System.out.println("Подождите пожалуйста, идут вычисления... :)");
-        List<String> coolNumbersData = CoolNumbers.generateCoolNumbers();
 
+        // наверно лучше все-таки создавать в начале, чтобы потом не ждать, да и так точно время создания не помещает поиску
+        List<String> coolNumbersData = CoolNumbers.generateCoolNumbers();
         Collections.sort(coolNumbersData);
         HashSet<String> hashSet = new HashSet<>(coolNumbersData);
         TreeSet<String> treeSet = new TreeSet<>(coolNumbersData);
@@ -26,16 +27,47 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
 
-            if (input.equals("0")) {
+            if (input.equals("STOP")) {
                 break;
             }
 
             if(CoolNumbers.isCarNumberInString(input))
             {
-                CoolNumbers.bruteForceSearchInList(coolNumbersData, input);
-                CoolNumbers.binarySearchInList(coolNumbersData, input);
-                CoolNumbers.searchInHashSet(hashSet, input);
-                CoolNumbers.searchInTreeSet(treeSet, input);
+                long tBrute = System.nanoTime();
+                if(CoolNumbers.bruteForceSearchInList(coolNumbersData, input))
+                {
+                    System.out.println("Поиск перебором: номер найден, поиск занял: " + (System.nanoTime() - tBrute) + " нс.");
+                }
+                else{
+                    System.out.println("Поиск перебором: номер не найден, поиск занял: " + (System.nanoTime() - tBrute) + " нс.");
+                }
+
+                long timeBinary = System.nanoTime();
+                if(CoolNumbers.binarySearchInList(coolNumbersData, input))
+                {
+                    System.out.println("Бинарный поиск: номер найден, поиск занял: " + (System.nanoTime() - timeBinary) + " нс.");
+                }
+                else{
+                    System.out.println("Бинарный поиск: номер не найден, поиск занял: " + (System.nanoTime() - timeBinary) + " нс.");
+                }
+
+                long timeHash = System.nanoTime();
+                if(CoolNumbers.searchInHashSet(hashSet, input))
+                {
+                    System.out.println("Поиск в HashSet: номер найден, поиск занял: " + (System.nanoTime() - timeHash) + " нс.");
+                }
+                else{
+                    System.out.println("Поиск в HashSet: номер не найден, поиск занял: " + (System.nanoTime() - timeHash) + " нс.");
+                }
+
+                long timeTree = System.nanoTime();
+                if(CoolNumbers.searchInTreeSet(treeSet, input))
+                {
+                    System.out.println("Поиск в TreeSet: номер найден, поиск занял: " + (System.nanoTime() - timeTree) + " нс.");
+                }
+                else{
+                    System.out.println("Поиск в TreeSet: номер не найден, поиск занял: " + (System.nanoTime() - timeTree) + " нс.");
+                }
             }
             else{
                 System.out.println("wrong format");
