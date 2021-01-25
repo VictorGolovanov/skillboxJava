@@ -1,44 +1,23 @@
 public class CardAccount extends BankAccount {
-    @Override
-    public double getAmount() {
-        return super.getAmount();
-    }
+
+    private static final String accountName = "Счет кредитной карты. ";
+    private static final String accountCurrency = "Валюта - RUB.";
+    private static final String serviceMessageMoney = "Остаток на счете: ";
+    private static final String accountServiceTerms = "За снятие наличных и перевод взимается комиссия в размере ";
+    private static final String serviceMessageFee = "%% от суммы снятия или перевода."; // %% иначе выходил UnknownFormatConversionException
+
 
     @Override
-    public void put(double amountToPut) {
-        super.put(amountToPut);
+    public boolean take(double amountToTake) {
+        double amountToTakeCard = amountToTake + (amountToTake * TRANSACTION_PERCENT);
+        return super.take(amountToTakeCard);
     }
 
-    @Override
-    public void take(double amountToTake) {
-        double amountToTakeCard = amountToTake + (amountToTake * 0.01);
-        super.take(amountToTakeCard);
-    }
 
     @Override
-    public boolean send(BankAccount receiver, double amount) {
-        double serviceFee = amount * 0.01;
-        double moneyToSend = amount + serviceFee;
-        boolean isSent = false;
-        if(amount > 0.0)
-        {
-            if(moneyAmount > moneyToSend)
-            {
-                // комиссия уходит банку
-                receiver.put(amount);
-                moneyAmount -= moneyToSend;
-                isSent = true;
-                double bankProfit = serviceFee; // понимаю, что это тут лишнее, но банк же должен получить свою выгоду
-            }
-            else
-            {
-                System.out.println("Операция не может быть выполнена!");
-                if(amount > moneyAmount)
-                {
-                    System.out.println("\tнедостаточно средств!");
-                }
-            }
-        }
-        return isSent;
+    public String toString() {
+        return String.format("Имя владельца: " + ownerName + "\n" + accountName + accountCurrency +
+                "\n" + serviceMessageMoney + moneyAmount +
+                "\n" + accountServiceTerms + (TRANSACTION_PERCENT * 100) + serviceMessageFee);
     }
 }

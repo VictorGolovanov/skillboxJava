@@ -1,58 +1,50 @@
 public class Main
 {
     public static void main(String[] args) {
-        BankAccount husbandBank = new BankAccount();
+
+        /*BankAccount husbandBank = new BankAccount();
+        husbandBank.setOwnerName("Ferdinand of Aragon");
+        System.out.println(husbandBank);
         BankAccount wifeBank = new BankAccount();
+        wifeBank.setOwnerName("Isabel of Castile");
+        System.out.println(wifeBank);*/
 
-        husbandBank.put(10000.0);
-        wifeBank.put(10000.0);
-        System.out.println("На банковском счете мужа: " + husbandBank.getAmount());
-        System.out.println("На банковском счете жены: " + wifeBank.getAmount());
+        DepositAccount husbandDeposit = new DepositAccount();
+        husbandDeposit.setOwnerName("Ferdinand of Aragon");
+        husbandDeposit.setMoneyAmount(5435100.0);
+        System.out.println(husbandDeposit);
         System.out.println();
+        DepositAccount wifeDeposit = new DepositAccount();
+        wifeDeposit.setOwnerName("Isabel of Castile");
+        husbandDeposit.send(husbandDeposit, wifeDeposit, 3000000.0);
+        System.out.println(husbandDeposit);
+        System.out.println();
+        System.out.println(wifeDeposit);
 
-        wifeBank.send(husbandBank, 1000.0);
-        System.out.println("На банковском счете мужа: " + husbandBank.getAmount());
-        System.out.println("На банковском счете жены: " + wifeBank.getAmount());
-        System.out.println();
+        /*
+        husbandBank.put(123456.0);
 
-        husbandBank.send(wifeBank, 20000.0);
-        System.out.println("На банковском счете мужа: " + husbandBank.getAmount());
-        System.out.println("На банковском счете жены: " + wifeBank.getAmount());
         System.out.println();
+        System.out.println(husbandBank);
         System.out.println();
+        husbandBank.send(husbandBank, wifeBank, 23456.0);
+        System.out.println();
+        System.out.println(husbandBank);
+        System.out.println();
+        System.out.println(wifeBank);
 
         CardAccount husbandCard = new CardAccount();
         CardAccount wifeCard = new CardAccount();
-        System.out.println("На счете мужа: " + husbandCard.getAmount());
-        System.out.println("На счете жены: " + wifeCard.getAmount());
-        husbandCard.put(12000.0);
-        System.out.println();
+        husbandCard.put(10000.0);
 
-        System.out.println("На счете мужа: " + husbandCard.getAmount());
-        System.out.println("На счете жены: " + wifeCard.getAmount());
-        husbandCard.send(wifeCard, 2000.0);
         System.out.println();
-
-        System.out.println("На счете мужа: " + husbandCard.getAmount());
-        System.out.println("На счете жены: " + wifeCard.getAmount());
+        System.out.println(husbandCard);
         System.out.println();
+        husbandCard.send(husbandCard, wifeCard, 1000.0);
         System.out.println();
-
-        DepositAccount husbandDeposit = new DepositAccount();
-        DepositAccount wifeDeposit = new DepositAccount();
-
-        System.out.println("На депозите мужа: " + husbandDeposit.getAmount());
-        System.out.println("На депозите жены: " + wifeDeposit.getAmount());
-        husbandDeposit.put(345123.0);
+        System.out.println(husbandCard);
         System.out.println();
-
-        System.out.println("На депозите мужа: " + husbandDeposit.getAmount());
-        System.out.println("На депозите жены: " + wifeDeposit.getAmount());
-        husbandDeposit.send(wifeDeposit, 123456);
-        System.out.println();
-
-        System.out.println("На депозите мужа: " + husbandDeposit.getAmount());
-        System.out.println("На депозите жены: " + wifeDeposit.getAmount());
+        System.out.println(wifeCard);*/
 
     }
 }
