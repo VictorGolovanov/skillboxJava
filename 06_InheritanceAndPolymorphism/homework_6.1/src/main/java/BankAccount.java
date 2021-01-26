@@ -1,6 +1,6 @@
 public class BankAccount {
 
-  public double moneyAmount;
+  public double moneyAmount; // но вот что тут делать... если ее сделать private, то все ломается
   public static final double TRANSACTION_PERCENT = 0.01;
   private static final String accountName = "Банковский счет. ";
   private static final String accountCurrency = "Валюта - RUB."; // можно было бы сделать единым для всех классов, но счета могут быть и в разных валютах
@@ -70,7 +70,7 @@ public class BankAccount {
     return ownerName;
   }
 
-  // чтобы можно было тестировать
+  // да и тут не поставишь private, либо вообще убрать...
   public void setMoneyAmount(double moneyAmount) {
     this.moneyAmount = moneyAmount;
   }

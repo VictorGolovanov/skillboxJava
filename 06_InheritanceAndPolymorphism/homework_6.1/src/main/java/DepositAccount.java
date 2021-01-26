@@ -11,7 +11,8 @@ public class DepositAccount extends BankAccount {
     private static final String serviceMessageTime = "Дата последнего пополнения: ";
 
 
-    LocalDate lastIncome = LocalDate.of(2020, Month.DECEMBER, 21); // не знаю, как сымитировать пополнение когда-то в прошлом
+    //тут сделаем private чтобы можно было только тут менять.
+    private LocalDate lastIncome = LocalDate.of(2020, Month.DECEMBER, 21); // не знаю, как сымитировать пополнение когда-то в прошлом
 
     @Override
     public boolean take(double amountToTake) {
