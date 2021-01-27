@@ -10,6 +10,8 @@ public class DepositAccount extends BankAccount {
     private static final String accountServiceTerms = "Снятие и перевод средств возможны не ранее чем через 1 месяц после последнего пополнения счета.";
     private static final String serviceMessageTime = "Дата последнего пополнения: ";
 
+    double moneyAmount = getMoneyAmount();
+
 
     //тут сделаем private чтобы можно было только тут менять.
     private LocalDate lastIncome = LocalDate.of(2020, Month.DECEMBER, 21); // не знаю, как сымитировать пополнение когда-то в прошлом
@@ -35,7 +37,10 @@ public class DepositAccount extends BankAccount {
     @Override
     public void put(double amountToPut) {
         lastIncome = LocalDate.now(); // lastIncome = LocalDate.of(2020, Month.DECEMBER, 21);
-        super.put(amountToPut);
+        if(amountToPut >= 0.0)
+        {
+            moneyAmount += amountToPut;
+        }
     }
 
     @Override
