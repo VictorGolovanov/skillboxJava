@@ -27,7 +27,7 @@ public class BankAccount {
     {
       isTook = true;
       moneyAmount -= amountToTake;
-      System.out.println("Операция выполнена. Текущий баланс: " + getMoneyAmount());
+      System.out.println("Сумма в размере " + amountToTake + "руб. снята. Текущий баланс: " + getMoneyAmount());
     }
     return isTook;
   }
