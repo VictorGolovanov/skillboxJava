@@ -10,7 +10,6 @@ public class DepositAccount extends BankAccount {
     private static final String accountServiceTerms = "Снятие и перевод средств возможны не ранее чем через 1 месяц после последнего пополнения счета.";
     private static final String serviceMessageTime = "Дата последнего пополнения: ";
 
-    double moneyAmount = getMoneyAmount();
 
 
     //тут сделаем private чтобы можно было только тут менять.
@@ -18,29 +17,21 @@ public class DepositAccount extends BankAccount {
 
     @Override
     public boolean take(double amountToTake) {
-        // как-то проще все равно не получилось
         LocalDate dateOfTake = LocalDate.now();
-        boolean isTook = false;
         if(ChronoUnit.MONTHS.between(lastIncome, dateOfTake) >= 1)
         {
-            if(amountToTake <= moneyAmount)
-            {
-                isTook = true;
-                moneyAmount -= amountToTake;
-            }
-
+            return super.take(amountToTake);
         }
-        return isTook;
+        else{
+            System.out.println("С момента предыдущего пополнения счета прошло меньше месяца.");
+            return false;
+        }
     }
-
 
     @Override
     public void put(double amountToPut) {
-        lastIncome = LocalDate.now(); // lastIncome = LocalDate.of(2020, Month.DECEMBER, 21);
-        if(amountToPut >= 0.0)
-        {
-            moneyAmount += amountToPut;
-        }
+        lastIncome = LocalDate.now();
+        super.put(amountToPut);
     }
 
     @Override
@@ -48,7 +39,7 @@ public class DepositAccount extends BankAccount {
         DateTimeFormatter lastIncomeFormat = DateTimeFormatter.ofPattern("dd.LL.yyyy");
         String lastIncomeString = lastIncomeFormat.format(lastIncome);
         return String.format("Имя владельца: " + ownerName + "\n" + accountName + accountCurrency +
-                "\n" + serviceMessageMoney + moneyAmount +
+                "\n" + serviceMessageMoney + getMoneyAmount() +
                 "\n" + accountServiceTerms + "\n" + serviceMessageTime + lastIncomeString);
     }
 }

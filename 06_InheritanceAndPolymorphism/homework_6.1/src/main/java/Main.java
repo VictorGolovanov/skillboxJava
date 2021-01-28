@@ -45,6 +45,8 @@ public class Main
         popeOfRome.put(1000000.0);
         System.out.println();
         System.out.println(popeOfRome);
+        System.out.println();
+        popeOfRome.take(100000.0);
 
 
     }

@@ -17,6 +17,7 @@ public class BankAccount {
     if(amountToPut >= 0.0)
     {
       moneyAmount += amountToPut;
+      System.out.println("Счет пополнен. Текущий баланс: " + getMoneyAmount());
     }
   }
 
@@ -26,6 +27,7 @@ public class BankAccount {
     {
       isTook = true;
       moneyAmount -= amountToTake;
+      System.out.println("Операция выполнена. Текущий баланс: " + getMoneyAmount());
     }
     return isTook;
   }
@@ -39,6 +41,7 @@ public class BankAccount {
       {
         receiver.put(amount);
         isSent = true;
+        System.out.println("Операция выполнена. Текущий баланс: " + getMoneyAmount());
       }
       else
         {
