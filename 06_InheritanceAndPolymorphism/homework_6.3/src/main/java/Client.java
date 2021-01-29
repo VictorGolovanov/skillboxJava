@@ -1,16 +1,11 @@
 public abstract class Client {
 
-    public double getAmount() {
-        //TODO: реализуйте метод и удалите todo
-        return 0;
-    }
+    protected double moneyAmount;
 
-    public void put(double amountToPut) {
-        //TODO: реализуйте метод и удалите todo
-    }
+    abstract double getAmount();
 
-    public void take(double amountToTake) {
-        //TODO: реализуйте метод и удалите todo
-    }
+    abstract void put(double amountToPut);
+
+    abstract void take(double amountToTake);
 
 }
