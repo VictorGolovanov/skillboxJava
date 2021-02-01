@@ -6,17 +6,12 @@ public class IndividualBusinessman extends Client {
     private static final double defaultTakeCommission = 0.01; // 1%
 
     @Override
-    double getAmount() {
-        return moneyAmount;
-    }
-
-    @Override
     protected void put(double amountToPut) {
         if(amountToPut >= 0.0)
         {
             if(amountToPut < PUT_AMOUNT)
             {
-                put(amountToPut, defaultPutCommission);
+                super.put(amountToPut);
             }
             if(amountToPut >= PUT_AMOUNT)
             {

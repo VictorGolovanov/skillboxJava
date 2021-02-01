@@ -5,9 +5,10 @@ public abstract class Client {
 
     protected double moneyAmount;
 
-    abstract double getAmount();
+    protected double getAmount(){
+        return moneyAmount;
+    }
 
-    //должен быть protected? Я почему-то думал, что в абстрактном классе все методы должны быть абстрактными :)
     protected void put(double amountToPut){
         put(amountToPut, putCommission);
     }
@@ -32,7 +33,6 @@ public abstract class Client {
         }
     }
 
-    // конструктор
     protected Client(double putCommission, double takeCommission)
     {
         this.putCommission = putCommission;
