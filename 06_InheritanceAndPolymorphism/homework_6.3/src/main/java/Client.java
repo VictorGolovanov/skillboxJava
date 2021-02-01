@@ -1,19 +1,36 @@
 public abstract class Client {
 
-    protected double putCommission;
-    protected double takeCommission;
+    private final double putCommission;
+    private final double takeCommission;
 
     protected double moneyAmount;
 
     abstract double getAmount();
 
-    abstract void put(double amountToPut);
+    //должен быть protected? Я почему-то думал, что в абстрактном классе все методы должны быть абстрактными :)
+    protected void put(double amountToPut){
+        put(amountToPut, putCommission);
+    }
 
-    abstract void put(double amountToPut, double commission);
+    protected void put(double amountToPut, double putCommission){
+        if(amountToPut >= 0.0)
+        {
+            moneyAmount += (amountToPut - (amountToPut * putCommission));
+        }
+    }
 
-    abstract void take(double amountToTake);
+    protected void take(double amountToTake)
+    {
+        take(amountToTake, takeCommission);
+    }
 
-    abstract void take(double amountToTake, double takeCommission);
+    protected void take(double amountToTake, double takeCommission)
+    {
+        if(amountToTake <= moneyAmount)
+        {
+            moneyAmount -= (amountToTake + (amountToTake * takeCommission));
+        }
+    }
 
     // конструктор
     protected Client(double putCommission, double takeCommission)
