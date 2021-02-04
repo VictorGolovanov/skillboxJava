@@ -5,13 +5,13 @@ public class TopManager implements Employee
     private static final double LEVEL_FOR_BONUS = 10000000;
 
     @Override
-    public double getMonthSalary() {
-        double monthIncome = Company.getIncome();
-        if(monthIncome > LEVEL_FOR_BONUS){
-
+    public double getMonthSalary(int monthCompanyIncome) {
+        if(monthCompanyIncome > LEVEL_FOR_BONUS){
+            //System.out.println(monthCompanyIncome);
             return FIX_PART + (FIX_PART * BONUS_PERCENT);
         }
         else{
+            //System.out.println(monthCompanyIncome);
             return FIX_PART;
         }
     }
