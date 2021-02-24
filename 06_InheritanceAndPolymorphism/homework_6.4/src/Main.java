@@ -27,7 +27,7 @@ public class Main {
 
         System.out.println();
 
-        System.out.println("10 самых маленких зарплат:");
+        System.out.println("10 самых маленьких зарплат:");
         for (Employee employee : sellCompany.getLowestSalaryStaff(10, incomeCompany)) {
             System.out.println(employee.getMonthSalary(incomeCompany) + " руб.");
         }

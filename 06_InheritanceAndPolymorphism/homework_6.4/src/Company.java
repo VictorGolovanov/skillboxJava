@@ -3,27 +3,39 @@ import java.util.*;
 public class Company {
     private static final double MIN_INCOME =  8000000.0;
     private static final double MAX_INCOME = 15000000.0;
-
     private static final ArrayList<Employee> employees = new ArrayList<>();
 
     public void hire(Employee employee)
     {
         employees.add(employee);
+        employee.setCompany(this);
     }
 
     public void hireAll(Collection<Employee> employeeCollection)
     {
         employees.addAll(employeeCollection);
+        for(Employee employee : employeeCollection)
+        {
+            employee.setCompany(this);
+        }
     }
 
     public void fire(Employee employee)
     {
         employees.remove(employee);
+        employee.setCompany(null);
     }
 
     public static int getIncome()
     {
-        return (int)(Math.random() * (MAX_INCOME - MIN_INCOME) + MIN_INCOME);
+        int profit = 0;
+        for (Employee employee : employees) {
+            if (employee instanceof Manager) {
+                profit += ((Manager) employee).getProfitForCompany();
+            }
+        }
+        return profit;
+        /*return (int)(Math.random() * (MAX_INCOME - MIN_INCOME) + MIN_INCOME);*/
     }
 
     // создаем отсортированный список нужного размера по компаратору, чтобы уже использовать в нужном методе
