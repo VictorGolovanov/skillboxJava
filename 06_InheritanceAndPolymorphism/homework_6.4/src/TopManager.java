@@ -8,11 +8,9 @@ public class TopManager implements Employee
     @Override
     public double getMonthSalary(int monthCompanyIncome) {
         if(monthCompanyIncome > LEVEL_FOR_BONUS){
-            //System.out.println(monthCompanyIncome);
             return FIX_PART + (FIX_PART * BONUS_PERCENT);
         }
         else{
-            //System.out.println(monthCompanyIncome);
             return FIX_PART;
         }
     }

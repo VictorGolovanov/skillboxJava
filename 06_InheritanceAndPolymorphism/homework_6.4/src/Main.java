@@ -1,8 +1,6 @@
 public class Main {
     public static void main(String[] args) {
         Company sellCompany = new Company();
-        int incomeCompany = sellCompany.getIncome();
-        System.out.println("Доход компании: " + incomeCompany + " рублей.");
 
         for (int i = 0; i < 180; i++) {
             Employee operator = new Operator();
@@ -16,8 +14,11 @@ public class Main {
             Employee topManager = new TopManager();
             sellCompany.hire(topManager);
         }
-        System.out.println();
         System.out.println("Количество сотрудников: " + sellCompany.countEmployees());
+        System.out.println();
+
+        int incomeCompany = sellCompany.getIncome();
+        System.out.println("Доход компании: " + incomeCompany + " рублей.");
         System.out.println();
 
         System.out.println("10 самых высоких зарплат:");

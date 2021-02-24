@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class Company {
-    private static final double MIN_INCOME =  8000000.0;
-    private static final double MAX_INCOME = 15000000.0;
+    /*private static final double MIN_INCOME =  8000000.0;
+    private static final double MAX_INCOME = 15000000.0;*/
     private static final ArrayList<Employee> employees = new ArrayList<>();
 
     public void hire(Employee employee)
