@@ -39,7 +39,7 @@ public class Company {
     }
 
     // создаем отсортированный список нужного размера по компаратору, чтобы уже использовать в нужном методе
-    private List<Employee> getSortedList(int count, Comparator<Employee> comparator) {
+    /*private List<Employee> getSortedList(int count, Comparator<Employee> comparator) {
         List<Employee> copyList = new ArrayList<>(employees);
         copyList.sort(comparator);
         List<Employee> result = new ArrayList<>();
@@ -57,6 +57,27 @@ public class Company {
     public List<Employee> getLowestSalaryStaff(int count, int monthCompanyIncome) {
         return getSortedList(count, (o1, o2)
                 -> (int) (o1.getMonthSalary(monthCompanyIncome) - o2.getMonthSalary(monthCompanyIncome)));
+    }*/
+
+    // метод, который сортирует и печатает нужное количество зарплат
+    private void getSortedList(int count, Comparator<Employee> comparator) {
+        List<Employee> copyList = new ArrayList<>(employees);
+        copyList
+                .stream()
+                .sorted(comparator)
+                .limit(count)
+                .forEach(System.out::println);
+    }
+
+    // а тут ссылаемся на getSortedList
+
+    public void getTopSalaryStaff(int count)
+    {
+        getSortedList(count, employees.sort(Comparator.comparing(Employee::getMonthSalary)).reversed());
+    }
+    public void getLowestSalaryStaff(int count)
+    {
+        getSortedList(count, employees.sort(Comparator.comparing(Employee::getMonthSalary)));
     }
 
     public int countEmployees() {
