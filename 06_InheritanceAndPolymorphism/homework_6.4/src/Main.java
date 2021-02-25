@@ -22,19 +22,15 @@ public class Main {
         System.out.println();
 
         System.out.println("10 самых высоких зарплат:");
-        for (Employee employee : sellCompany.getTopSalaryStaff(10)) {
-            System.out.println(employee.getMonthSalary() + " руб.");
-        }
+        sellCompany.getTopSalaryStaff(10);
 
         System.out.println();
 
-        System.out.println("10 самых маленьких зарплат:");
-        for (Employee employee : sellCompany.getLowestSalaryStaff(10)) {
-            System.out.println(employee.getMonthSalary() + " руб.");
-        }
+        System.out.println("10 самых низких зарплат:");
+        sellCompany.getLowestSalaryStaff(10);
 
+        System.out.println();
         System.out.println("Владелец компании решил сократить половину сотрудников.");
-        System.out.println("Так как в компании нет профсоюза, то задуманное удалось.");
 
         int countEmployees = sellCompany.countEmployees();
         for (int i = 0; i < countEmployees / 2; i++) {
@@ -47,16 +43,12 @@ public class Main {
         System.out.println();
 
         System.out.println("10 самых высоких зарплат:");
-        for (Employee employee : sellCompany.getTopSalaryStaff(10)) {
-            System.out.println(employee.getMonthSalary() + " руб.");
-        }
+        sellCompany.getTopSalaryStaff(10);
 
         System.out.println();
 
-        System.out.println("10 самых маленких зарплат:");
-        for (Employee employee : sellCompany.getLowestSalaryStaff(10)) {
-            System.out.println(employee.getMonthSalary() + " руб.");
-        }
+        System.out.println("10 самых низких зарплат:");
+        sellCompany.getLowestSalaryStaff(10);
 
         System.out.println("Количество сотрудников: " + sellCompany.countEmployees());
     }

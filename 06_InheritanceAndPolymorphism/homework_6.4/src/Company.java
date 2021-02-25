@@ -36,7 +36,7 @@ public class Company {
     }
 
 
-    // метод, который сортирует и печатает нужное количество зарплат
+    // метод, который сортирует и печатает нужное количество зарплат, в классах сотрудников переопределил toString
     private void getSortedList(int count, Comparator<Employee> comparator) {
         List<Employee> copyList = new ArrayList<>(employees);
         copyList
@@ -49,11 +49,11 @@ public class Company {
     // а тут ссылаемся на getSortedList
     public void getTopSalaryStaff(int count)
     {
-        getSortedList(count, employees.sort(Comparator.comparing(Employee::getMonthSalary)).reversed());
+        getSortedList(count, Comparator.comparing(Employee::getMonthSalary).reversed());
     }
     public void getLowestSalaryStaff(int count)
     {
-        getSortedList(count, employees.sort(Comparator.comparing(Employee::getMonthSalary)));
+        getSortedList(count, Comparator.comparing(Employee::getMonthSalary));
     }
 
     public int countEmployees() {

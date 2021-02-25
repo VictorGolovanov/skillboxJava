@@ -20,4 +20,9 @@ public class Manager implements Employee
     public void setCompany(Company company) {
         this.company = company;
     }
+
+    @Override
+    public String toString() {
+        return String.format(getMonthSalary() + " руб.");
+    }
 }
