@@ -5,7 +5,7 @@ public class Operator implements Employee
     private static final double monthSalary = FIX_PART;
 
     @Override
-    public double getMonthSalary(int monthCompanyIncome) {
+    public double getMonthSalary() {
         return monthSalary;
     }
 

@@ -1,5 +1,5 @@
 public interface Employee
 {
-    double getMonthSalary(int monthCompanyIncome);
+    double getMonthSalary();
     void setCompany(Company company);
 }

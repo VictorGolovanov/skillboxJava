@@ -12,7 +12,7 @@ public class Manager implements Employee
     }
 
     @Override
-    public double getMonthSalary(int monthCompanyIncome) {
+    public double getMonthSalary() {
         return FIX_PART + getProfitForCompany() * BONUS_PERCENT;
     }
 

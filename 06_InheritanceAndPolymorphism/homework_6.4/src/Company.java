@@ -1,9 +1,7 @@
 import java.util.*;
 
 public class Company {
-    /*private static final double MIN_INCOME =  8000000.0;
-    private static final double MAX_INCOME = 15000000.0;*/
-    private static final ArrayList<Employee> employees = new ArrayList<>();
+    private ArrayList<Employee> employees = new ArrayList<>();
 
     public void hire(Employee employee)
     {
@@ -26,7 +24,7 @@ public class Company {
         employee.setCompany(null);
     }
 
-    public static int getIncome()
+    public int getIncome()
     {
         int profit = 0;
         for (Employee employee : employees) {
@@ -35,29 +33,8 @@ public class Company {
             }
         }
         return profit;
-        /*return (int)(Math.random() * (MAX_INCOME - MIN_INCOME) + MIN_INCOME);*/
     }
 
-    // создаем отсортированный список нужного размера по компаратору, чтобы уже использовать в нужном методе
-    /*private List<Employee> getSortedList(int count, Comparator<Employee> comparator) {
-        List<Employee> copyList = new ArrayList<>(employees);
-        copyList.sort(comparator);
-        List<Employee> result = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            result.add(copyList.get(i));
-        }
-        return result;
-    }
-
-    public List<Employee> getTopSalaryStaff(int count, int monthCompanyIncome) {
-        return getSortedList(count, (o1, o2)
-                -> (int) (o2.getMonthSalary(monthCompanyIncome) - o1.getMonthSalary(monthCompanyIncome)));
-    }
-
-    public List<Employee> getLowestSalaryStaff(int count, int monthCompanyIncome) {
-        return getSortedList(count, (o1, o2)
-                -> (int) (o1.getMonthSalary(monthCompanyIncome) - o2.getMonthSalary(monthCompanyIncome)));
-    }*/
 
     // метод, который сортирует и печатает нужное количество зарплат
     private void getSortedList(int count, Comparator<Employee> comparator) {
@@ -70,7 +47,6 @@ public class Company {
     }
 
     // а тут ссылаемся на getSortedList
-
     public void getTopSalaryStaff(int count)
     {
         getSortedList(count, employees.sort(Comparator.comparing(Employee::getMonthSalary)).reversed());
