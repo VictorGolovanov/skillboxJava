@@ -51,5 +51,6 @@ public class Main {
         sellCompany.getLowestSalaryStaff(10);
 
         System.out.println("Количество сотрудников: " + sellCompany.countEmployees());
+        System.out.println("Доход компании: " + sellCompany.getIncome() + " рублей.");
     }
 }
