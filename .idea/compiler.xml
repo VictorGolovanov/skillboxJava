@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="PhoneBook" />
         <module name="PhoneCleaner" />
+        <module name="LambdaExpressions7.2-Employee" />
         <module name="TotalEarningsCalculatorReqExp" />
         <module name="MaskingInformationReqExp" />
         <module name="EmailList" />
@@ -39,6 +40,7 @@
       <module name="Inheritance1" target="11" />
       <module name="Inheritance3" target="11" />
       <module name="LambdaExpressions7.1" target="11" />
+      <module name="LambdaExpressions7.2-Employee" target="11" />
       <module name="MaskingInformation" target="11" />
       <module name="MaskingInformationReqExp" target="11" />
       <module name="min_max_values" target="1.5" />
