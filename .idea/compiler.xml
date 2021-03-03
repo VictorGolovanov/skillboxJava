@@ -13,6 +13,7 @@
         <module name="MaskingInformationReqExp" />
         <module name="EmailList" />
         <module name="SplitText" />
+        <module name="LambdaExpressions7.2-Airport" />
         <module name="MaskingInformation" />
         <module name="TotalEarningsCalculator" />
         <module name="TrucksContainersAndBoxes" />
@@ -40,6 +41,7 @@
       <module name="Inheritance1" target="11" />
       <module name="Inheritance3" target="11" />
       <module name="LambdaExpressions7.1" target="11" />
+      <module name="LambdaExpressions7.2-Airport" target="11" />
       <module name="LambdaExpressions7.2-Employee" target="11" />
       <module name="MaskingInformation" target="11" />
       <module name="MaskingInformationReqExp" target="11" />
