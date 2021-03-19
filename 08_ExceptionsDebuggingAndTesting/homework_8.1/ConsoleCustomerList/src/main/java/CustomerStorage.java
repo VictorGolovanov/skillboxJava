@@ -46,6 +46,7 @@ public class CustomerStorage {
 
     public void removeCustomer(String name) {
         isStorageEmpty();
+        isStorageContainsName(name);
         storage.remove(name);
     }
 
@@ -83,6 +84,12 @@ public class CustomerStorage {
     private void isStorageEmpty(){
         if(storage.isEmpty()){
             throw new IllegalArgumentException("Нет клиентов в списке");
+        }
+    }
+
+    private void isStorageContainsName(String name){
+        if(!storage.containsKey(name)){
+            throw new IllegalArgumentException("Такого клиента нет в списке!");
         }
     }
 }

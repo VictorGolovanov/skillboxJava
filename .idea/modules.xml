@@ -39,6 +39,7 @@
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max/min_max.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max/min_max.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max_v.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max_v.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max_values/min_max_values.iml" filepath="$PROJECT_DIR$/04_NumbersStringsAndDates/homework_4.2/min_max_values/min_max_values.iml" />
+      <module fileurl="file://$PROJECT_DIR$/08_ExceptionsDebuggingAndTesting/homework_8.2/SPBMetro/spb-metro.iml" filepath="$PROJECT_DIR$/08_ExceptionsDebuggingAndTesting/homework_8.2/SPBMetro/spb-metro.iml" />
     </modules>
   </component>
 </project>
