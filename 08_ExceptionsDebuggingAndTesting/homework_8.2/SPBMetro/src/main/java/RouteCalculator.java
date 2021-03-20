@@ -16,14 +16,19 @@ public class RouteCalculator {
     }
 
     public List<Station> getShortestRoute(Station from, Station to) {
+        // если вводить маршрут с тремя пересадками, то программа сначала проваливается сюда
         List<Station> route = getRouteOnTheLine(from, to);
-        if (route != null) {
+        if (route != null) { // тут соответственно маршрут пустой null
             return route;
         }
 
+        // поэтому идем сюда!
+        // а тут маршрут не пустой!!!
         route = getRouteWithOneConnection(from, to);
-        if (route != null) {
-            return route;
+        if (route != null && route.size() > 0) { // ААААААА!!!!!!!!
+            // из-за чего проверка на null проходится, хотя фактически route имеет размер 0! НО НЕ null!!!
+            return route; // в итоге вывод массив с размером 0
+            // поэтому программа дальше не идет!!!
         }
 
         route = getRouteWithTwoConnections(from, to);
@@ -136,9 +141,9 @@ public class RouteCalculator {
                     continue;
                 }
                 List<Station> way = new ArrayList<>();
-                way.addAll(getRouteOnTheLine(from, srcStation));
+                way.addAll(getRouteOnTheLine(from, srcStation)); // way.addAll(Objects.requireNonNull(getRouteOnTheLine(from, srcStation)));
                 way.addAll(connectedLineRoute);
-                way.addAll(getRouteOnTheLine(dstStation, to));
+                way.addAll(getRouteOnTheLine(dstStation, to)); // way.addAll(Objects.requireNonNull(getRouteOnTheLine(dstStation, to)));
                 if (route.isEmpty() || route.size() > way.size()) {
                     route.clear();
                     route.addAll(way);

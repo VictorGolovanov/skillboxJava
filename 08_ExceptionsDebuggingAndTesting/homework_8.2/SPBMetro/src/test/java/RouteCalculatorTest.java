@@ -72,7 +72,18 @@ public class RouteCalculatorTest extends TestCase
         engineerStation = new Station("Инженерная", technoLine);
         rocketStation = new Station("Ракетная", technoLine);
 
-        stationIndex = new StationIndex();
+        // забыл добавить станции в линии
+        tsarkayaLine.addStation(petrovskayaStation);
+        tsarkayaLine.addStation(ekateriniskayaStation);
+        tsarkayaLine.addStation(nikolaevskayaStation);
+
+        revolutionLine.addStation(leninskayaStation);
+        revolutionLine.addStation(oktyabrskayaStation);
+        revolutionLine.addStation(revolutionStation);
+
+        technoLine.addStation(vychislitelnayaStation);
+        technoLine.addStation(engineerStation);
+        technoLine.addStation(rocketStation);
 
         stationIndex.addLine(tsarkayaLine);
         stationIndex.addLine(revolutionLine);
@@ -102,9 +113,10 @@ public class RouteCalculatorTest extends TestCase
         connectionLinesTwoAndThree.add(vychislitelnayaStation);
         stationIndex.addConnection(connectionLinesTwoAndThree);
 
-        // почему-то печатает три раза
-        System.out.println(stationIndex.getConnectedStations(nikolaevskayaStation));
-        System.out.println(stationIndex.getConnectedStations(leninskayaStation));
+        calculator = new RouteCalculator(stationIndex);
+
+        /*System.out.println(stationIndex.getConnectedStations(nikolaevskayaStation));
+        System.out.println(stationIndex.getConnectedStations(leninskayaStation));*/
 
 
         // маршурт без пересадок - 5 минут
@@ -131,10 +143,6 @@ public class RouteCalculatorTest extends TestCase
         twoTransferRoute.add(engineerStation);
         twoTransferRoute.add(rocketStation);
 
-        for(int i = 0; i < twoTransferRoute.size(); i++){
-            System.out.println(twoTransferRoute.get(i));
-        }
-
     }
 
     public void testCalculateDurationNoTransfer(){
@@ -157,21 +165,21 @@ public class RouteCalculatorTest extends TestCase
 
     // приватные методы тестируем через метод getShortestRoute
     public void testGetRouteOnTheLine(){
-        calculator = new RouteCalculator(stationIndex);
+        //calculator = new RouteCalculator(stationIndex);
         List<Station> actualRoute = calculator.getShortestRoute(petrovskayaStation, nikolaevskayaStation);
         List<Station> expectedRoute = noTransferRoute;
         assertEquals(expectedRoute, actualRoute);
     }
 
     public void testGetRouteWithOneConnection(){
-        calculator = new RouteCalculator(stationIndex);
+        //calculator = new RouteCalculator(stationIndex);
         List<Station> actualRoute = calculator.getShortestRoute(petrovskayaStation, revolutionStation);
         List<Station> expectedRoute = oneTransferRoute;
         assertEquals(expectedRoute, actualRoute);
     }
 
     public void testGetRouteWithTwoConnections(){
-        calculator = new RouteCalculator(stationIndex);
+        //calculator = new RouteCalculator(stationIndex);
         List<Station> actualRoute = calculator.getShortestRoute(petrovskayaStation, rocketStation);
         List<Station> expectedRoute = twoTransferRoute;
         assertEquals(expectedRoute, actualRoute);
