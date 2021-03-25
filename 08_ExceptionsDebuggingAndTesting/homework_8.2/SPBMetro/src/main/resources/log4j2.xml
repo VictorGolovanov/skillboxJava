@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <File name="ERRORS" fileName="logs/errors.log">
+            <Filters>
+                <MarkerFilter marker="ERRORS"/>
+            </Filters>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+
+        <File name="FOUND_STATIONS" fileName="logs/found_stations.log">
+            <Filters>
+                <MarkerFilter marker="FOUND"/>
+            </Filters>
+            <MarkerFilter marker="FOUND"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+
+        <File name="NOT_FOUND_STATIONS" fileName="logs/not_found_stations.log">
+            <Filters>
+                <MarkerFilter marker="NOT_FOUND"/>
+            </Filters>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+
+    </appenders>
+
+    <loggers>
+        <root level="trace">
+            <appender-ref ref="ERRORS" level="error"/>
+            <appender-ref ref="FOUND_STATIONS" level="info"/>
+            <appender-ref ref="NOT_FOUND_STATIONS" level="warn"/>
+        </root>
+    </loggers>
+</configuration>
