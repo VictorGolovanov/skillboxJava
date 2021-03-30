@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
 
 public class FileUtils {
 
@@ -6,34 +8,44 @@ public class FileUtils {
     static final String FILE_NOT_DIRECTORY_MESSAGE = "Указан файл, а не папка";
 
     public static void copyFolder(String sourceDirectory, String destinationDirectory) {
-        // TODO: write code copy content of sourceDirectory to destinationDirectory
 
-        File sourceDir = new File(sourceDirectory);
-        File destinationDir = new File(destinationDirectory);
+        //методы для проверки чуть поменял
+        directoryCheck(sourceDirectory);
+        directoryCheck(destinationDirectory);
 
-        directoryCheck(sourceDir);
-        directoryCheck(destinationDir);
+        fileCheck(sourceDirectory);
+        fileCheck(destinationDirectory);
 
-        fileCheck(sourceDir);
-        fileCheck(destinationDir);
+        Path source = Paths.get(sourceDirectory);
+        Path target = Paths.get(destinationDirectory);
 
         try{
-            org.apache.commons.io.FileUtils.copyDirectory(sourceDir, destinationDir);
-            System.out.println("Копирование прошло успешно!");
+            Files.walk(source)
+                    .forEach(p -> {
+                        try {
+                            Path targetPath = target.resolve(source.relativize(p));
+                            Files.copy(p, targetPath, StandardCopyOption.REPLACE_EXISTING);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
         }
-        catch (Exception ex){
-            ex.printStackTrace();
+        catch (Exception exception){
+            exception.printStackTrace();
         }
+        System.out.println("Копирование прошло успешно!");
     }
 
-    private static void directoryCheck(File directory){
-        if(!directory.exists()){
+    private static void directoryCheck(String directory){
+        File dir = new File(directory);
+        if(!dir.exists()){
             throw new IllegalArgumentException(WRONG_PATH_MESSAGE + ": " + directory);
         }
     }
 
-    private static void fileCheck(File directory){
-        if(directory.isFile()){
+    private static void fileCheck(String directory){
+        File dir = new File(directory);
+        if(dir.isFile()){
             throw new IllegalArgumentException(FILE_NOT_DIRECTORY_MESSAGE + ": " + directory);
         }
     }

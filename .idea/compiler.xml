@@ -12,6 +12,7 @@
         <module name="ConsoleCustomerList" />
         <module name="MaskingInformationReqExp" />
         <module name="SplitText" />
+        <module name="read-movements-csv" />
         <module name="LambdaExpressions7.2-Airport" />
         <module name="MaskingInformation" />
         <module name="TrucksContainersAndBoxes" />
@@ -55,6 +56,7 @@
       <module name="min_max_values" target="1.5" />
       <module name="PhoneBook" target="11" />
       <module name="PhoneCleaner" target="11" />
+      <module name="read-movements-csv" target="11" />
       <module name="spb-metro" target="11" />
       <module name="SplitText" target="11" />
       <module name="TodoList" target="11" />
