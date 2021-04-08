@@ -7,22 +7,9 @@ public class Transaction {
     private Date dateOfTransaction;
     private String referenceOfTransaction;
     private String description;
-    private double income;  // 7 колонка
-    private double expense; // 8 колонка
+    private double income;
+    private double expense;
 
-
-    protected Transaction(String type, String number, String currency, Date dateOfTransaction,
-                       String referenceOfTransaction, String description,
-                       double income, double expense){
-        this.type = type;
-        this.number = number;
-        this.currency = currency;
-        this.dateOfTransaction = dateOfTransaction;
-        this.referenceOfTransaction = referenceOfTransaction;
-        this.description = description;
-        this.income = income;
-        this.expense = expense;
-    }
 
     public double getExpense() {
         return expense;
@@ -56,5 +43,59 @@ public class Transaction {
 
     public String getType() {
         return type;
+    }
+
+
+    // используем Builder
+    public static class Builder{
+        private Transaction transaction;
+
+        public Builder(){
+            transaction = new Transaction();
+        }
+
+        public Builder withType(String type){
+            transaction.type = type;
+            return this;
+        }
+
+        public Builder withNumber(String number){
+            transaction.number = number;
+            return this;
+        }
+
+        public Builder withCurrency(String currency){
+            transaction.currency = currency;
+            return this;
+        }
+
+        public Builder withDate(Date dateOfTransaction){
+            transaction.dateOfTransaction = dateOfTransaction;
+            return this;
+        }
+
+        public Builder withReferenceOfTransaction(String referenceOfTransaction){
+            transaction.referenceOfTransaction = referenceOfTransaction;
+            return this;
+        }
+
+        public Builder withDescription(String description){
+            transaction.description = description;
+            return this;
+        }
+
+        public Builder withIncome(double income){
+            transaction.income = income;
+            return this;
+        }
+
+        public Builder withExpense(double expense){
+            transaction.expense = expense;
+            return this;
+        }
+
+        public Transaction build(){
+            return transaction;
+        }
     }
 }

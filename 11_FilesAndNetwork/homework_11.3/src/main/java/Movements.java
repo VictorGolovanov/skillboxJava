@@ -6,7 +6,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Movements {
-    private List<String> lines;
     private List<Transaction> movements;
 
     public Movements(String pathMovementsCsv){
@@ -16,7 +15,7 @@ public class Movements {
     private void loadMovementsFromFile(String pathMovementsCsv) {
         try {
             movements = new ArrayList<>();
-            lines = Files.readAllLines(Paths.get(pathMovementsCsv));
+            List<String> lines = Files.readAllLines(Paths.get(pathMovementsCsv));
             // пропускаем шапку
             for(int i = 1; i < lines.size(); i++){
                 // в общем вот: найдем и заменим все запятые внутри кавычек на точки
@@ -47,13 +46,16 @@ public class Movements {
                         String currency = fragments[2];
                         Date dateOfTransaction = new SimpleDateFormat("dd.MM.yyyy").parse(fragments[3]);
                         String referenceOfTransaction = fragments[4];
+
                         String description = fragments[5].split("    ")[1].trim(); // отсекаем все лишнее
                         double income = Double.parseDouble(fragments[6]);
                         double expense  = Double.parseDouble(fragments[7]);
 
-                        movements.add(new Transaction(type, number, currency,
-                                dateOfTransaction, referenceOfTransaction,
-                                description, income, expense));
+                        movements.add(new Transaction.Builder()
+                                .withDescription(description)
+                                .withIncome(income)
+                                .withExpense(expense)
+                                .build());
                     }
                 }
             } catch (Exception ex) {
