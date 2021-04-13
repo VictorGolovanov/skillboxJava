@@ -25,6 +25,7 @@
         <module name="LambdaExpressions7.1" />
         <module name="LambdaExpressions7.2-Employee" />
         <module name="folder-copy" />
+        <module name="ImagesDownloadFromSite" />
         <module name="EmailList" />
         <module name="spb-metro" />
         <module name="TotalEarningsCalculator" />
@@ -46,6 +47,7 @@
       <module name="FullNameFormatter" target="11" />
       <module name="FullNameFormatterRegExp" target="11" />
       <module name="GeometryCalculator" target="11" />
+      <module name="ImagesDownloadFromSite" target="11" />
       <module name="Inheritance1" target="11" />
       <module name="Inheritance3" target="11" />
       <module name="LambdaExpressions7.1" target="11" />
