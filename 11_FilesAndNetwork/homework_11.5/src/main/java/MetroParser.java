@@ -17,13 +17,15 @@ public class MetroParser {
     private Elements elements;
     private StationIndex metroMap;
     private Map<String, Station> allStations;
+    private String PATH;
 
 
     public MetroParser(String LINK, String PATH) throws IOException {
         document = Jsoup.connect(LINK).maxBodySize(0).get();
         elements = document.select("div#metrodata");
+        this.PATH = PATH;
         metroMap = new StationIndex();
-        allStations = new TreeMap<>();
+        allStations = new LinkedHashMap<>();
         buildMetroMap();
         metroMapToJSON(metroMap, PATH);
     }
@@ -61,18 +63,10 @@ public class MetroParser {
     private List<Line> parseLines(){
         List<Line> linesList = new ArrayList<>();
         Elements lines = elements.select("span.js-metro-line.t-metrostation-list-header.t-icon-metroln");
-        // хотел, чтобы в итоге линии сохранялись по мере добавления, а не как попало. toMap же дает HashMap
-        // В итоге с LinkedHashMap что-то не получилось.
-        // Что так.
-        /*LinkedHashMap<String, String> linesNames = lines.stream()
-                .collect(Collectors.toMap(k -> k.attr("data-line"), Element::text, (a, b) -> a, LinkedHashMap::new));*/
-
-        // что так - результат один
-        Map<String, String> linesNames = lines.stream()
-                .collect(Collectors.toMap(k -> k.attr("data-line"), Element::text));
+        LinkedHashMap<String, String> linesNames = lines.stream()
+                .collect(Collectors.toMap(k -> k.attr("data-line"), Element::text, (a, b) -> a, LinkedHashMap::new));
 
         linesNames.forEach((k, v) -> linesList.add(new Line(k, v)));
         return linesList;
     }
-
 }

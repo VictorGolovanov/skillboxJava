@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 
 public class StationIndex
 {
-    private TreeMap<String, Set<String>> stations;
+    private LinkedHashMap<String, List<String>> stations;
     private List<TreeSet<Station>> connections;
-    private TreeSet<Line> lines;
+    private List<Line> lines;
 
     public StationIndex(){
-        stations = new TreeMap();
+        stations = new LinkedHashMap<>();
         connections = new ArrayList<>();
-        lines = new TreeSet<>();
+        lines = new ArrayList<>();
     }
 
     public void addLine(Line line){
@@ -21,12 +21,13 @@ public class StationIndex
     }
 
     public void addAllLineStations(Line line, List<Station> stations) {
-        Set<String> stationsSet = stations.stream()
+        List<String> stationsList = stations.stream()
                 .map(Station::getStationName)
-                .collect(Collectors.toSet());
-        this.stations.put(line.getNumber(), stationsSet);
+                .collect(Collectors.toList());
+        this.stations.put(line.getNumber(), stationsList);
     }
 
+    // потом переделаю
     public void addConnection(TreeSet<Station> stations) {
         if (!connections.contains(stations)) {
             connections.add(stations);
@@ -35,5 +36,9 @@ public class StationIndex
 
     public List<TreeSet<Station>> getConnections() {
         return connections;
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }
