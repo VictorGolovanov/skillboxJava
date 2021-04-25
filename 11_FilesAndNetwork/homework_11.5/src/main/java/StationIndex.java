@@ -1,6 +1,5 @@
 import core.Line;
 import core.Station;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,13 +31,5 @@ public class StationIndex
         if (!connections.contains(stations)) {
             connections.add(stations);
         }
-    }
-
-    public List<TreeSet<Station>> getConnections() {
-        return connections;
-    }
-
-    public List<Line> getLines() {
-        return lines;
     }
 }
