@@ -11,6 +11,7 @@
         <module name="PhoneCleaner" />
         <module name="TotalEarningsCalculatorReqExp" />
         <module name="ConsoleCustomerList" />
+        <module name="homework12.1" />
         <module name="MaskingInformationReqExp" />
         <module name="SplitText" />
         <module name="read-movements-csv" />
@@ -48,6 +49,7 @@
       <module name="FullNameFormatter" target="11" />
       <module name="FullNameFormatterRegExp" target="11" />
       <module name="GeometryCalculator" target="11" />
+      <module name="homework12.1" target="1.8" />
       <module name="ImagesDownloadFromSite" target="11" />
       <module name="Inheritance1" target="11" />
       <module name="Inheritance3" target="11" />

@@ -128,22 +128,6 @@ public class MetroParser {
         System.out.println();
         System.out.println("Переходы с тремя и более станциями считаются за один! Пока не решил как иначе посчитать.");
         System.out.println("Количество переходов в метро: " + connectionsArray.size());
-
-        /*List<Station> connectionStations = new ArrayList<>();
-        connectionsArray.forEach(connectionObject ->{
-            JSONArray connection = (JSONArray) connectionObject;
-            //List<Station> connectionStations = new ArrayList<>();
-            connection.forEach(item ->
-            {
-                JSONObject itemObject = (JSONObject) item;
-                //String lineNumber = ((String) itemObject.get("lineNumber"));
-                String stationName = (String) itemObject.get("stationName");
-
-                Station station = new Station(stationName);
-                connectionStations.add(station);
-            });
-        });
-        System.out.println(connectionStations.size());*/
     }
 
     private String getJsonFile(){
