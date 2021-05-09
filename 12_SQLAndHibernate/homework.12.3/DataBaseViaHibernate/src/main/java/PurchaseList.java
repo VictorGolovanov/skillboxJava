@@ -56,7 +56,7 @@ public class PurchaseList
         this.subscriptionDate = subscriptionDate;
     }
 
-    //
+
     public PurchaseKey getPurchaseKey() {
         return purchaseKey;
     }
