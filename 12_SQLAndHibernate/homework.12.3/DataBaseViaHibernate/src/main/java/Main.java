@@ -1,7 +1,6 @@
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -47,6 +46,16 @@ public class Main
         System.out.println("LinkedPurchaseList");
         System.out.println("*****************************************");
 
+        linkedTableBuilder(session);
+
+
+
+        transaction.commit();
+        sessionFactory.close();
+
+    }
+
+    private static void linkedTableBuilder(Session session){
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<PurchaseList> query = builder.createQuery(PurchaseList.class);
         Root<PurchaseList> root = query.from(PurchaseList.class);
@@ -55,26 +64,25 @@ public class Main
         List<PurchaseList> listOfPurchases = session.createQuery(query).getResultList();
         List<LinkedPurchaseList> listOfLinkedPurchases = new ArrayList<>();
 
-        listOfPurchases.forEach(purchaseList -> {
-            String hqlStudent = "FROM " + Student.class.getSimpleName() + " WHERE name='" + purchaseList.getPurchaseKey().getStudentName() + "'";
-            String hqlCourse = "FROM " + Course.class.getSimpleName() + " WHERE name='"+ purchaseList.getPurchaseKey().getCourseName() + "'";
+        listOfPurchases.forEach(onePurchase -> {
+            String hqlStudent = "FROM " + Student.class.getSimpleName() + " WHERE name='" + onePurchase.getPurchaseKey().getStudentName() + "'";
+            String hqlCourse = "FROM " + Course.class.getSimpleName() + " WHERE name='"+ onePurchase.getPurchaseKey().getCourseName() + "'";
 
             Student student = (Student) session.createQuery(hqlStudent).getSingleResult();
             Course course = (Course) session.createQuery(hqlCourse).getSingleResult();
 
-            LinkedPurchaseList linkedPurchaseList = new LinkedPurchaseList();
-            linkedPurchaseList.setLinkedPurchaseKey(new LinkedPurchaseKey(student.getId(), course.getId()));
 
-            session.save(linkedPurchaseList);
-            listOfLinkedPurchases.add(linkedPurchaseList);
+            LinkedPurchaseList linkedPurchase = new LinkedPurchaseList();
+            linkedPurchase.setLinkedPurchaseKey(new LinkedPurchaseKey(student.getId(), course.getId()));
+
+            linkedPurchase.setCourseName(onePurchase.getCourseName());
+            linkedPurchase.setStudentName(onePurchase.getStudentName());
+
+            linkedPurchase.setPrice(onePurchase.getPrice());
+            linkedPurchase.setSubscriptionDate(onePurchase.getSubscriptionDate());
+
+            session.save(linkedPurchase);
+            listOfLinkedPurchases.add(linkedPurchase);
         });
-
-        System.out.println(listOfLinkedPurchases.size());
-
-
-
-        transaction.commit();
-        sessionFactory.close();
-
     }
 }
