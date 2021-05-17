@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println(PhoneBook.getHelloString(LocalTime.now()));
-        System.out.println("Вас приветствует программа, сохраняющая ваши контакты!");
         Scanner scanner = new Scanner(System.in);
         String[] commands = new String[2];
         commands[0] = "LIST";

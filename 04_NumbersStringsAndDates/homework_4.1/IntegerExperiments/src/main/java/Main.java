@@ -45,20 +45,4 @@ public class Main {
       }
     return result;
   }
-  /*
-  сохраню это решение :)
-  public static int sumDigits(Integer number) {
-    if(number == null)
-    {
-      return -1;
-    }
-    else {
-      int result = 0;
-      while (number > 0) {
-        result += number % 10;
-        number = number / 10;
-      }
-      return result;
-    }
-  }*/
 }

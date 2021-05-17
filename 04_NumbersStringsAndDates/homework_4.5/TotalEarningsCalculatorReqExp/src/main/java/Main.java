@@ -4,12 +4,11 @@ import java.util.regex.Pattern;
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println(calculateSalarySum("Дядя Федор заработал 100 рублей, кот Матроскин заработал 200 рублей, а Шарик только 50 рублtq."));
+    System.out.println(calculateSalarySum("Дядя Федор заработал 100 рублей, кот Матроскин заработал 200 рублей, а Шарик только 50 рублей."));
 
   }
 
   public static int calculateSalarySum(String text){
-    //TODO: реализуйте метод
 
     int result = 0; // если числа не будут найдены, то вывод будет 0
     Matcher m = Pattern.compile("\\d+").matcher(text); // вроде бы так

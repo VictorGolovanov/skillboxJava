@@ -18,7 +18,8 @@ public class GeometryCalculator {
         {
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }

@@ -1,6 +1,6 @@
 public class BankAccount {
 
-  private double moneyAmount; // но вот что тут делать... если ее сделать private, то все ломается
+  private double moneyAmount;
   public static final double TRANSACTION_PERCENT = 0.01;
   private static final String accountName = "Банковский счет. ";
   private static final String accountCurrency = "Валюта - RUB."; // можно было бы сделать единым для всех классов, но счета могут быть и в разных валютах

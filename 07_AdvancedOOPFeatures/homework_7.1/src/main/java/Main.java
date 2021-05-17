@@ -8,7 +8,6 @@ public class Main {
 
     public static void main(String[] args) {
         List<Employee> staff = Employee.loadStaffFromFile(STAFF_TXT);
-        //System.out.println(staff);
 
         sortBySalaryAndAlphabet(staff);
         for(Employee employee : staff){
@@ -17,7 +16,6 @@ public class Main {
     }
 
     public static void sortBySalaryAndAlphabet(List<Employee> staff) {
-        //TODO Метод должен отсортировать сотрудников по заработной плате и алфавиту.
         /*Collections.sort(staff, ((o1, o2) -> {
             // если зарплаты одинаковые, то сраниваем по имени => == 0
             if(o1.getSalary().compareTo(o2.getSalary()) == 0)
@@ -30,7 +28,6 @@ public class Main {
             }
         }));*/
 
-        // действительно, совсем проще. По смыслу тоже самое, сначала по зарплате, потом по имени
         staff.sort(Comparator.comparing(Employee::getSalary).thenComparing(Employee::getName));
     }
 }

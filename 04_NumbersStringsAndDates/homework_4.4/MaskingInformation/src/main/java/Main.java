@@ -5,8 +5,8 @@ public class Main {
         System.out.println(safe);
     }
 
+    // если в строке нет <> - вернуть строку без изменений
     public static String searchAndReplaceDiamonds(String text, String placeholder) {
-        // TODO: реализовать метод, если в строке нет <> - вернуть строку без изменений
         String changedString = null;
         // узнаем сколько скобок есть в строке
         int openDiamondCount = 0;
@@ -44,7 +44,7 @@ public class Main {
             lastDiamond = text.indexOf(">");
             changedString = text.substring(0, firstDiamond) + placeholder + text.substring(lastDiamond + 1);
         }
-        // честно говоря выглядит немного как костыль
+        // честно говоря выглядит немного как костыль, но потом выполним эту задачу с помощью регулярных выражений
         else if(openDiamondCount == 2 & closeDiamondCount == 2)
         {
             int firstDiamond; // индекс первой открывающей скобки

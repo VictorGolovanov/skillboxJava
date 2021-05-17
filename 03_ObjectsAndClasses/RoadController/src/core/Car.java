@@ -2,11 +2,11 @@ package core;
 
 public class Car
 {
-    public String number; // done
-    public int height; // done
-    public double weight; // done
-    public boolean hasVehicle; // for boolean too?
-    public boolean isSpecial;  // for boolean too?
+    public String number;
+    public int height;
+    public double weight;
+    public boolean hasVehicle;
+    public boolean isSpecial;
 
     public String toString()
     {

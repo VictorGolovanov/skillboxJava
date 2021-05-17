@@ -3,8 +3,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        // Хотелось написать приветсвенное сообщение, но тогда программа не проходит через тест
-        // System.out.println("Сколько ящиков необходимо перевезти?");
         Scanner scanner = new Scanner(System.in);
         String boxes = scanner.nextLine(); // почему сразу не считывать целые числа через next.Int()?
         int box = Integer.parseInt(boxes); // переведем в нормальные числа
@@ -50,7 +48,6 @@ public class Main {
         System.out.println("грузовиков - " + truck + " шт.");
         System.out.println("контейнеров - " + container + " шт.");
 
-        // TODO: вывести в консоль коробки разложенные по грузовикам и контейнерам
         // пример вывода при вводе 2
         // для отступа используйте табуляцию - \t
 

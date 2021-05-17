@@ -26,7 +26,7 @@ public class StationIndex
         this.stations.put(line.getNumber(), stationsList);
     }
 
-    // потом переделаю
+
     public void addConnection(TreeSet<Station> stations) {
         if (!connections.contains(stations)) {
             connections.add(stations);

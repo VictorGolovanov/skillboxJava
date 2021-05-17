@@ -14,7 +14,6 @@ public class Main {
       if (input.equals("0")) {
         break;
       }
-      //TODO:напишите ваш код тут, результат вывести в консоль.
 
       // сначала уберем все лишнее
       String rusPhoneNumber = input.replaceAll("\\D+", "");
@@ -77,9 +76,6 @@ public class Main {
         }
         if(hasEnoughNumbers & isFirstNumCorrect & isSecondNumberCorrect)
         {
-          // System.out.println(result);
-          // хотел реализовать группировку по кол-ву цифр
-          // первая группа - 1 цифра(то есть 7), вторая группа - 3 следующие цифры и т.д.
           Pattern p = Pattern.compile("(\\d{1,1})(\\d{3,3})(\\d{3,3})(\\d{2,2})(\\d{2,2})");
           Matcher m = p.matcher(result);
           String niceFormat = m.replaceAll("+$1 ($2) $3 $4-$5");

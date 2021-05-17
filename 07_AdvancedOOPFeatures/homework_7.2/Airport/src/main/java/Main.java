@@ -13,7 +13,6 @@ public class Main {
     }
 
     public static List<Flight> findPlanesLeavingInTheNextTwoHours(Airport airport) {
-        //TODO Метод должден вернуть список рейсов вылетающих в ближайшие два часа.
         List<Terminal> terminalList = airport.getTerminals(); // все терминалы аэропорта
         List<Flight> flightList = new ArrayList<>(); // все полеты
         for (Terminal terminal : terminalList) { // заполняем рейсами

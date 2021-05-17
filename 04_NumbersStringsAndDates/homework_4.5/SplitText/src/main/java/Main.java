@@ -5,7 +5,6 @@ public class Main {
   }
 
   public static String splitTextInToWords(String text) {
-    //TODO реализуйте метод
     String clearTextNum = text.replaceAll("\\d+", ""); // сначала цифры
     String clearTextAll = clearTextNum.replaceAll("[.,;:!?]", ""); // потом знаки препинания
     String clearText = clearTextAll.replaceAll("\\-+", " ");

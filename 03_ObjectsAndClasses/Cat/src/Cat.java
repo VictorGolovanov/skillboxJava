@@ -7,12 +7,12 @@ public class Cat
     private double minWeight;
     private double maxWeight;
 
-    private double eatenAmount; // переменная для учета съеденного котами
-    private double drinkAmount; // давайте учтем и что кот выпил :)
-    private static int count = 0; // переменная счетчик количества кошек
-    private boolean isAlive; // состояние кота
+    private double eatenAmount;
+    private double drinkAmount;
+    private static int count = 0;
+    private boolean isAlive;
     private String name;
-    private Color catColor; // переменная, где хранится цвет кошки
+    private Color catColor;
 
     public static final int LEGS_COUNT = 4;
     public static final int TAIL_COUNT = 1;
@@ -46,18 +46,15 @@ public class Cat
         this.name = name;
     }
 
-    // 1. для создания глубокой копии нужно отразить все параметры исходного объекта?
-    public Cat(Cat pafnutiy) // так подсказала среда разработки.
-                             // Но если делать так, то мы копируем только несчастного кота Пафнутия?
+    public Cat(Cat pafnutiy)
     {
         this.name = pafnutiy.getName();
         this.catColor = pafnutiy.catColor;
         this.weight = pafnutiy.getWeight();
-        // 1.1 когда захотел покормить кота пахома - то оказалось, что isAlive у него false
-        this.isAlive = pafnutiy.isAlive; // это вообще выглядит нормально?
-        count++; // ну и счетчик котов, очевидно иначе не будет учитывать клона
-    } // таким образом, мы сделали копию кота Пафнутия... Но это какой-то странный метод.
-    // а если надо создать копию другого кота? Опять все прописывать? наверно это не единственный способ
+
+        this.isAlive = pafnutiy.isAlive;
+        count++;
+    }
 
     public void setName(String name)
     {
@@ -71,8 +68,7 @@ public class Cat
 
     public void meow()
     {
-        if(!isAlive) // так видимо лучше?
-        //(weight >= maxWeight || weight <= minWeight) // этим условием проверяем, существует ли кот на данный момент
+        if(!isAlive)
         {
             System.out.println("Unexisting creature can't meow :(");
         }

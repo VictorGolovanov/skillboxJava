@@ -41,9 +41,6 @@ public class RoadController
         }
     }
 
-    /**
-     * Расчёт стоимости проезда исходя из массы и высоты
-     */
     private static int calculatePrice(Car car)
     {
         int carHeight = car.height;
@@ -75,17 +72,11 @@ public class RoadController
         return price;
     }
 
-    /**
-     * Открытие шлагбаума
-     */
     private static void openWay()
     {
         System.out.println("Шлагбаум открывается... Счастливого пути!");
     }
 
-    /**
-     * Сообщение о невозможности проезда
-     */
     private static void blockWay(String reason)
     {
         System.out.println("Проезд невозможен: " + reason);
