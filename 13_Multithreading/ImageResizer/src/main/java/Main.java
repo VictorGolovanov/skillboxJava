@@ -11,6 +11,7 @@ public class Main {
     private static final String dstFolder = "E:/images/dst";
 
     public static void main(String[] args) {
+
         File srcDir = new File(srcFolder);
         File[] files = srcDir.listFiles();
 
