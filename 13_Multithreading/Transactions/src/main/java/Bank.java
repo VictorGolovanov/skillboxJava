@@ -1,0 +1,79 @@
+import java.util.*;
+
+public class Bank {
+
+    private volatile Hashtable<String, Account> accounts;
+    private final Random random = new Random();
+    private final long fraudLimit = 50000L;
+    private String name;
+
+    public synchronized boolean isFraud(String fromAccountNum, String toAccountNum, long amount)
+        throws InterruptedException {
+        Thread.sleep(1000);
+        return random.nextBoolean(); // :)
+    }
+
+    public Bank(String name){
+        accounts = new Hashtable<>();
+        this.name = name;
+    }
+
+    /**
+     * TODO: реализовать метод. Метод переводит деньги между счетами. Если сумма транзакции > 50000,
+     * то после совершения транзакции, она отправляется на проверку Службе Безопасности – вызывается
+     * метод isFraud. Если возвращается true, то делается блокировка счетов (как – на ваше
+     * усмотрение)
+     */
+    public synchronized void transfer(String fromAccountNum, String toAccountNum, long amount) {
+        if(amount >= 0){
+            if(accounts.get(fromAccountNum).getMoney() >= amount){
+                accounts.get(fromAccountNum).take(amount);
+                accounts.get(toAccountNum).put(amount);
+                //System.out.println(fromAccountNum + " остаток на счете: " + this.getBalance(fromAccountNum));
+                //System.out.println(toAccountNum + " остаток на счете: " + this.getBalance(toAccountNum));
+
+                if(amount >= fraudLimit){
+                    try {
+                        boolean isFraud = isFraud(fromAccountNum, toAccountNum, amount);
+                        if(isFraud){
+                            accounts.get(fromAccountNum).blockAccount();
+                            accounts.get(toAccountNum).blockAccount();
+                            System.out.println("Заблокирован аккаунт: " + accounts.get(fromAccountNum).getAccNumber());
+                            System.out.println("Заблокирован аккаунт: " + accounts.get(toAccountNum).getAccNumber());
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * TODO: реализовать метод. Возвращает остаток на счёте.
+     */
+    public synchronized long getBalance(String accountNum) {
+        return this.accounts.get(accountNum).getMoney();
+    }
+
+    public synchronized long getSumAllAccounts() {
+        //return this.accounts.values().stream().mapToLong(value -> value.getMoney().longValue()).sum();
+        return this.accounts.values().stream().mapToLong(Account::getMoney).sum();
+    }
+
+    public String getBankName() {
+        return name;
+    }
+
+    public synchronized void addAccount(String accNumber, Account account){
+        accounts.put(accNumber, account);
+    }
+
+    public void getAccNumbers(){
+        Set<String> keys = accounts.keySet();
+        for(String key : keys){
+            System.out.println(key);
+        }
+    }
+
+}
