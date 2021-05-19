@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Bank {
 
-    private volatile Hashtable<String, Account> accounts;
+    private Hashtable<String, Account> accounts;
     private final Random random = new Random();
     private final long fraudLimit = 50000L;
     private String name;
@@ -24,13 +24,20 @@ public class Bank {
      * метод isFraud. Если возвращается true, то делается блокировка счетов (как – на ваше
      * усмотрение)
      */
-    public synchronized void transfer(String fromAccountNum, String toAccountNum, long amount) {
+    public void transfer(String fromAccountNum, String toAccountNum, long amount) {
+        if(fromAccountNum.equals(toAccountNum)){
+            System.out.println("Недопустимая операция: указан один и тот же счет!");
+            return;
+        }
         if(amount >= 0){
             if(accounts.get(fromAccountNum).getMoney() >= amount){
+                // с одного аккаунта снимаем сумму
                 accounts.get(fromAccountNum).take(amount);
+                // на другой эту сумму кладем
                 accounts.get(toAccountNum).put(amount);
-                //System.out.println(fromAccountNum + " остаток на счете: " + this.getBalance(fromAccountNum));
-                //System.out.println(toAccountNum + " остаток на счете: " + this.getBalance(toAccountNum));
+
+                System.out.println(fromAccountNum + " остаток на счете: " + this.getBalance(fromAccountNum));
+                System.out.println(toAccountNum + " остаток на счете: " + this.getBalance(toAccountNum));
 
                 if(amount >= fraudLimit){
                     try {
@@ -52,12 +59,11 @@ public class Bank {
     /**
      * TODO: реализовать метод. Возвращает остаток на счёте.
      */
-    public synchronized long getBalance(String accountNum) {
+    public long getBalance(String accountNum) {
         return this.accounts.get(accountNum).getMoney();
     }
 
-    public synchronized long getSumAllAccounts() {
-        //return this.accounts.values().stream().mapToLong(value -> value.getMoney().longValue()).sum();
+    public long getSumAllAccounts() {
         return this.accounts.values().stream().mapToLong(Account::getMoney).sum();
     }
 
@@ -65,7 +71,7 @@ public class Bank {
         return name;
     }
 
-    public synchronized void addAccount(String accNumber, Account account){
+    public void addAccount(String accNumber, Account account){
         accounts.put(accNumber, account);
     }
 

@@ -1,4 +1,5 @@
 import junit.framework.TestCase;
+
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -25,17 +26,29 @@ public class TransactionTest extends TestCase
         sumBefore = bank.getSumAllAccounts();
     }
 
-    public synchronized void testTransaction(){
+    public void testTransaction(){
+
         ArrayList<Thread> threads = new ArrayList<>();
         for(int i = 0; i < 10; i++){
             threads.add(new Thread(this::iterator));
         }
 
         for(Thread thread : threads){
-            System.out.println("threadId " + thread.getId() + " *************************************************");
             thread.start();
             try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("***************************************************************************");
+            System.out.println("!!!!!!!!!!!!! threadName after start " + thread.getName() + " **************************************");
+            System.out.println("***************************************************************************");
+
+            try {
                 thread.join();
+                System.out.println("***************************************************************************");
+                System.out.println("!!!!!!!!!!!!! threadName after join " + thread.getName() + " ***************************************");
+                System.out.println("***************************************************************************");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -45,12 +58,12 @@ public class TransactionTest extends TestCase
         assertEquals(sumBefore, sumAfter);
     }
     public void iterator(){
-        long sum = (long)(Math.random() * (MAX_TRANSACTION - MIN_TRANSACTION) + MIN_TRANSACTION);
         for(int i = 0; i < 100; i++){
+            long sum = (long)(Math.random() * (MAX_TRANSACTION - MIN_TRANSACTION) + MIN_TRANSACTION);
             bank.transfer(accountVector.get((int) (Math.random() * 100)).getAccNumber(),
                           accountVector.get((int) (Math.random() * 100)).getAccNumber(),
                           sum);
-            System.out.println("total sum => " + bank.getSumAllAccounts());
+            System.out.println("********************************************** Operation: " + i + " total sum => " + bank.getSumAllAccounts());
         }
     }
 }

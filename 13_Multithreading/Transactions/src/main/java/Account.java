@@ -1,9 +1,6 @@
-import java.util.concurrent.atomic.AtomicLong;
-
 public class Account {
 
-    private volatile boolean isBlocked;
-    //private volatile long money;
+    private boolean isBlocked;
     private volatile long money;
     private String accNumber;
 
@@ -13,7 +10,7 @@ public class Account {
         isBlocked = false;
     }
 
-    public synchronized long getMoney() {
+    public long getMoney() {
         return money;
     }
 
@@ -23,15 +20,15 @@ public class Account {
     }
 
 
-    public synchronized void blockAccount(){
+    public void blockAccount(){
         isBlocked = true;
     }
 
-    public synchronized boolean isBlocked() {
+    public boolean isBlocked() {
         return isBlocked;
     }
 
-    public synchronized void put(long amount){
+    public void put(long amount){
         if(amount >= 0 && !isBlocked){
             //money.addAndGet(amount);
             money += amount;
@@ -41,9 +38,8 @@ public class Account {
         }
     }
 
-    public synchronized void take(long amount){
+    public void take(long amount){
         if(amount <= money && !isBlocked){
-            //money.addAndGet(-amount);
             money -= amount;
         }
         if(isBlocked){
