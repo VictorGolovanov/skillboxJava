@@ -13,7 +13,7 @@ public class TransactionTest extends TestCase
     private final long MIN_TRANSACTION = 1000;
 
     @Override
-    public void setUp() throws Exception {
+    public void setUp() {
         bank = new Bank("Popular Bank");
 
         accountVector = new Vector<>();
@@ -29,7 +29,7 @@ public class TransactionTest extends TestCase
     public void testTransaction(){
 
         ArrayList<Thread> threads = new ArrayList<>();
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 100; i++){
             threads.add(new Thread(this::iterator));
         }
 
@@ -58,7 +58,7 @@ public class TransactionTest extends TestCase
         assertEquals(sumBefore, sumAfter);
     }
     public void iterator(){
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 250; i++){
             long sum = (long)(Math.random() * (MAX_TRANSACTION - MIN_TRANSACTION) + MIN_TRANSACTION);
             bank.transfer(accountVector.get((int) (Math.random() * 100)).getAccNumber(),
                           accountVector.get((int) (Math.random() * 100)).getAccNumber(),

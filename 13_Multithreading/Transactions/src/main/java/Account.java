@@ -1,7 +1,7 @@
 public class Account {
 
     private boolean isBlocked;
-    private volatile long money;
+    private long money;
     private String accNumber;
 
     public Account(String accNumber, long money){
@@ -29,21 +29,23 @@ public class Account {
     }
 
     public void put(long amount){
-        if(amount >= 0 && !isBlocked){
-            //money.addAndGet(amount);
+        if(amount >= 0 && !this.isBlocked()){
             money += amount;
         }
-        if(isBlocked){
+        else if(this.isBlocked()){
             System.out.println("All operations with account => " + this.getAccNumber() + " are impossible!");
+        }
+        else {
+            System.out.println("Don't have enough money");
         }
     }
 
     public void take(long amount){
-        if(amount <= money && !isBlocked){
+        if(amount <= money && !this.isBlocked()){
             money -= amount;
         }
-        if(isBlocked){
-            System.out.println("All operations with account => " + this.getAccNumber() + " are impossible!");
+        else {
+            System.out.println("Operation is impossible!");
         }
     }
 

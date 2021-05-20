@@ -1,8 +1,9 @@
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Bank {
 
-    private Hashtable<String, Account> accounts;
+    private ConcurrentHashMap<String, Account> accounts;
     private final Random random = new Random();
     private final long fraudLimit = 50000L;
     private String name;
@@ -14,12 +15,12 @@ public class Bank {
     }
 
     public Bank(String name){
-        accounts = new Hashtable<>();
+        accounts = new ConcurrentHashMap<>();
         this.name = name;
     }
 
     /**
-     * TODO: реализовать метод. Метод переводит деньги между счетами. Если сумма транзакции > 50000,
+     *  Метод переводит деньги между счетами. Если сумма транзакции > 50000,
      * то после совершения транзакции, она отправляется на проверку Службе Безопасности – вызывается
      * метод isFraud. Если возвращается true, то делается блокировка счетов (как – на ваше
      * усмотрение)
@@ -29,36 +30,38 @@ public class Bank {
             System.out.println("Недопустимая операция: указан один и тот же счет!");
             return;
         }
-        if(amount >= 0){
-            if(accounts.get(fromAccountNum).getMoney() >= amount){
-                // с одного аккаунта снимаем сумму
-                accounts.get(fromAccountNum).take(amount);
-                // на другой эту сумму кладем
-                accounts.get(toAccountNum).put(amount);
 
-                System.out.println(fromAccountNum + " остаток на счете: " + this.getBalance(fromAccountNum));
-                System.out.println(toAccountNum + " остаток на счете: " + this.getBalance(toAccountNum));
+        synchronized (accounts.get(fromAccountNum)){
+            synchronized (accounts.get(toAccountNum)){
+                if(amount >= 0 && !accounts.get(fromAccountNum).isBlocked() && !accounts.get(toAccountNum).isBlocked()){
+                    if(accounts.get(fromAccountNum).getMoney() >= amount){
+                        // с одного аккаунта снимаем сумму
+                        accounts.get(fromAccountNum).take(amount);
+                        // на другой эту сумму кладем
+                        accounts.get(toAccountNum).put(amount);
 
-                if(amount >= fraudLimit){
-                    try {
-                        boolean isFraud = isFraud(fromAccountNum, toAccountNum, amount);
-                        if(isFraud){
-                            accounts.get(fromAccountNum).blockAccount();
-                            accounts.get(toAccountNum).blockAccount();
-                            System.out.println("Заблокирован аккаунт: " + accounts.get(fromAccountNum).getAccNumber());
-                            System.out.println("Заблокирован аккаунт: " + accounts.get(toAccountNum).getAccNumber());
+                        System.out.println(fromAccountNum + " остаток на счете: " + this.getBalance(fromAccountNum));
+                        System.out.println(toAccountNum + " остаток на счете: " + this.getBalance(toAccountNum));
+
+                        if(amount >= fraudLimit){
+                            try {
+                                boolean isFraud = isFraud(fromAccountNum, toAccountNum, amount);
+                                if(isFraud){
+                                    accounts.get(fromAccountNum).blockAccount();
+                                    accounts.get(toAccountNum).blockAccount();
+                                    System.out.println("Заблокирован аккаунт: " + accounts.get(fromAccountNum).getAccNumber());
+                                    System.out.println("Заблокирован аккаунт: " + accounts.get(toAccountNum).getAccNumber());
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
                 }
             }
         }
     }
 
-    /**
-     * TODO: реализовать метод. Возвращает остаток на счёте.
-     */
     public long getBalance(String accountNum) {
         return this.accounts.get(accountNum).getMoney();
     }
