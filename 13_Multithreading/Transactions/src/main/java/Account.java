@@ -36,13 +36,16 @@ public class Account {
             System.out.println("All operations with account => " + this.getAccNumber() + " are impossible!");
         }
         else {
-            System.out.println("Don't have enough money");
+            System.out.println("Operation is impossible!");
         }
     }
 
     public void take(long amount){
         if(amount <= money && !this.isBlocked()){
             money -= amount;
+        }
+        else if(this.isBlocked()){
+            System.out.println("All operations with account => " + this.getAccNumber() + " are impossible!");
         }
         else {
             System.out.println("Operation is impossible!");
