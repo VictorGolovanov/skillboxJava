@@ -31,33 +31,51 @@ public class Bank {
             return;
         }
 
-        synchronized (accounts.get(fromAccountNum)){
+        if(Long.parseLong(accounts.get(fromAccountNum).getAccNumber()) > Long.parseLong(accounts.get(toAccountNum).getAccNumber())){
+            synchronized (accounts.get(fromAccountNum)){
+                synchronized (accounts.get(toAccountNum)){
+                    doTransfer(fromAccountNum, toAccountNum, amount);
+                }
+            }
+        }
+        else{
             synchronized (accounts.get(toAccountNum)){
-                if(amount >= 0 && !accounts.get(fromAccountNum).isBlocked() && !accounts.get(toAccountNum).isBlocked()){
-                    if(accounts.get(fromAccountNum).getMoney() >= amount){
-                        // с одного аккаунта снимаем сумму
-                        accounts.get(fromAccountNum).take(amount);
-                        // на другой эту сумму кладем
-                        accounts.get(toAccountNum).put(amount);
+                synchronized (accounts.get(fromAccountNum)){
+                    doTransfer(fromAccountNum, toAccountNum, amount);
+                }
+            }
+        }
+    }
 
-                        System.out.println(fromAccountNum + " остаток на счете: " + this.getBalance(fromAccountNum));
-                        System.out.println(toAccountNum + " остаток на счете: " + this.getBalance(toAccountNum));
+    private void doTransfer(String fromAccountNum, String toAccountNum, long amount){
+        if(amount >= 0 && !accounts.get(fromAccountNum).isBlocked() && !accounts.get(toAccountNum).isBlocked()){
+            if(accounts.get(fromAccountNum).getMoney() >= amount){
+                // с одного аккаунта снимаем сумму
+                accounts.get(fromAccountNum).take(amount);
+                // на другой эту сумму кладем
+                accounts.get(toAccountNum).put(amount);
 
-                        if(amount >= fraudLimit){
-                            try {
-                                boolean isFraud = isFraud(fromAccountNum, toAccountNum, amount);
-                                if(isFraud){
-                                    accounts.get(fromAccountNum).blockAccount();
-                                    accounts.get(toAccountNum).blockAccount();
-                                    System.out.println("Заблокирован аккаунт: " + accounts.get(fromAccountNum).getAccNumber());
-                                    System.out.println("Заблокирован аккаунт: " + accounts.get(toAccountNum).getAccNumber());
-                                }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                System.out.println(fromAccountNum + " остаток на счете: " + this.getBalance(fromAccountNum) + " RUB");
+                System.out.println(toAccountNum + " остаток на счете: " + this.getBalance(toAccountNum) + " RUB");
+
+                if(amount >= fraudLimit){
+                    try {
+                        boolean isFraud = isFraud(fromAccountNum, toAccountNum, amount);
+                        if(isFraud){
+                            accounts.get(fromAccountNum).blockAccount();
+                            accounts.get(toAccountNum).blockAccount();
+                            System.out.println("Заблокирован аккаунт: " + accounts.get(fromAccountNum).getAccNumber());
+                            System.out.println("Заблокирован аккаунт: " + accounts.get(toAccountNum).getAccNumber());
                         }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
+            }
+            else{
+                System.out.println("Недостаточно средств!");
+                System.out.println(fromAccountNum + " остаток на счете: " + this.getBalance(fromAccountNum) + " RUB");
+                System.out.println(toAccountNum + " остаток на счете: " + this.getBalance(toAccountNum) + " RUB");
             }
         }
     }
