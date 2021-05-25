@@ -26,6 +26,7 @@
         <module name="folder-size" />
         <module name="ImageResizer" />
         <module name="GeometryCalculator" />
+        <module name="WebsiteMapper" />
         <module name="min_max_values" />
         <module name="LambdaExpressions7.1" />
         <module name="LambdaExpressions7.2-Employee" />
@@ -77,6 +78,7 @@
       <module name="TotalEarningsCalculatorReqExp" target="11" />
       <module name="Transactions" target="11" />
       <module name="TrucksContainersAndBoxes" target="11" />
+      <module name="WebsiteMapper" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
