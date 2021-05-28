@@ -3,13 +3,13 @@ package main;
 import main.model.Task;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ToDoListStorage
 {
-    private static int currentId;
-    private static HashMap<Integer, Task> todoList = new HashMap<>();
+    private static volatile int currentId;
+    private static ConcurrentHashMap<Integer, Task> todoList = new ConcurrentHashMap<>();
 
     public static List<Task> getToDoList(){
         ArrayList<Task> result = new ArrayList<>();
