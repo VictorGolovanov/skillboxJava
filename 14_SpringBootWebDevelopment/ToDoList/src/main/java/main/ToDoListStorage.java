@@ -1,14 +1,13 @@
 package main;
-
 import main.model.Task;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ToDoListStorage
 {
-    private static volatile int currentId;
+    private static AtomicInteger currentId = new AtomicInteger();
     private static ConcurrentHashMap<Integer, Task> todoList = new ConcurrentHashMap<>();
 
     public static List<Task> getToDoList(){
@@ -18,7 +17,8 @@ public class ToDoListStorage
     }
 
     public static int addTask(Task task){
-        int taskId = currentId++;
+        currentId.getAndIncrement();
+        int taskId = currentId.get();
         task.setId(taskId);
         todoList.put(taskId, task);
         System.out.println("Deal with id " + taskId + " added");
@@ -39,6 +39,4 @@ public class ToDoListStorage
         }
         return null;
     }
-
-
 }
