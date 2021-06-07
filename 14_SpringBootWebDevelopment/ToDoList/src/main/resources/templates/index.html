@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Список задач</title>
+
+    <script src="E:/java_basics/14_SpringBootWebDevelopment/ToDoList/src/main/resources/static/js/jquery-3.4.0.min.js"></script>
+    <script src="E:/java_basics/14_SpringBootWebDevelopment/ToDoList/src/main/resources/static/js/main.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="E:/java_basics/14_SpringBootWebDevelopment/ToDoList/src/main/resources/static/css/styles.css">
+</head>
+
+<body>
+    <div id="task-form">
+        <!-- action="#" method="POST" enctype="multipart/form-data"-->
+        <form>
+            <h2>Добавление дела</h2>
+            <label>Deadline:</label>
+            <!-----------date----------->
+            <!--name="deadline" value="" placeholder="дата в формате ДД.ММ.ГГГГ"-->
+            <input type="text" name="deadline" value="" placeholder="дата в формате ДД.ММ.ГГГГ">
+            <hr>
+            <label>Ответственное лицо:</label>
+            <input type="text" name="responsiblePerson" value="" placeholder="Имя">
+            <hr>
+            <label>Описание задачи:</label>
+            <input type="text" name="taskName" value="" placeholder="Осмысленный текст">
+            <hr>
+            <button id="#save-task">Сохранить</button>
+        </form>
+    </div>
+    <h1>Список дел (<span th:text="${tasksCount}">0</span>)</h1>
+    <button id="show-add-task-form">Добавить дело</button>
+    <br><br>
+    <div id="task-list">
+        <div th:each="task : ${tasks}">
+            <a href="#" class="task-link" th:attr="data-id=${task.id}" th:text="${task.taskName}"></a>
+            <button id="#edit-task">Изменить</button>
+            <button id="#delete-task">Удалить</button>
+        </div>
+    </div>
+    <!--<p th:text="${someParameter}"></p>-->
+</body>
+
+</html>
