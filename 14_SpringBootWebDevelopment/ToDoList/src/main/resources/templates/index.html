@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Список задач</title>
+    <!--E:/java_basics/14_SpringBootWebDevelopment/ToDoList/src/main/resources/static/js-->
 
-    <script src="E:/java_basics/14_SpringBootWebDevelopment/ToDoList/src/main/resources/static/js/jquery-3.4.0.min.js"></script>
-    <script src="E:/java_basics/14_SpringBootWebDevelopment/ToDoList/src/main/resources/static/js/main.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/cssandjs/main.css}"></link>
 
-    <link rel="stylesheet" type="text/css" href="E:/java_basics/14_SpringBootWebDevelopment/ToDoList/src/main/resources/static/css/styles.css">
 </head>
 
 <body>
@@ -41,6 +40,8 @@
         </div>
     </div>
     <!--<p th:text="${someParameter}"></p>-->
+    <script type="text/javascript" th:src="@{/js/cssandjs/jquery-3.4.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/cssandjs/main.js}"></script>
 </body>
 
 </html>

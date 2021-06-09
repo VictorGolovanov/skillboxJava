@@ -61,7 +61,7 @@ $(function() {
                 var task = {};
                 task.id = response;
                 var dataArray = $('#task-form form').serializeArray();
-                for (i in dataArray) {
+                for (var i in dataArray) {
                     task[dataArray[i]['name']] = dataArray[i]['value'];
                 }
                 appendTask(task);
