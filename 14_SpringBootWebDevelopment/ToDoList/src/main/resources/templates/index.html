@@ -13,7 +13,7 @@
 <body>
     <div id="task-form">
         <!-- action="#" method="POST" enctype="multipart/form-data"-->
-        <form>
+        <form action="#" method="POST" enctype="multipart/form-data">
             <h2>Добавление дела</h2>
             <label>Deadline:</label>
             <!-----------date----------->
@@ -26,7 +26,7 @@
             <label>Описание задачи:</label>
             <input type="text" name="taskName" value="" placeholder="Осмысленный текст">
             <hr>
-            <button id="#save-task">Сохранить</button>
+            <button type="submit" id="save-task">Сохранить</button>
         </form>
     </div>
     <h1>Список дел (<span th:text="${tasksCount}">0</span>)</h1>
@@ -35,8 +35,9 @@
     <div id="task-list">
         <div th:each="task : ${tasks}">
             <a href="#" class="task-link" th:attr="data-id=${task.id}" th:text="${task.taskName}"></a>
-            <button id="#edit-task">Изменить</button>
-            <button id="#delete-task">Удалить</button>
+            <button class="edit-task" th:attr="data-id=${task.id}">Изменить</button>
+            <button class="delete-task" th:attr="data-id=${task.id}">Удалить</button>
+            <br>
         </div>
     </div>
     <!--<p th:text="${someParameter}"></p>-->

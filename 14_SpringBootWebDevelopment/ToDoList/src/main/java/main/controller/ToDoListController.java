@@ -33,7 +33,7 @@ public class ToDoListController
         return getTaskService().addTask(taskEntity);
     }
 
-    @PostMapping("/tasks/{id}")
+    @PutMapping("/tasks/{id}")
     public ResponseEntity updateTaskById(@PathVariable int id, TaskEntity newTaskEntity){
         return getTaskService().updateTaskById(id, newTaskEntity);
     }
