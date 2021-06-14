@@ -27,6 +27,13 @@ $(function() {
         }
     });
 
+    //Closing changing task form
+    $('#change-task-form').click(function(event) {
+        if (event.target === this) {
+            $(this).css('display', 'none');
+        }
+    });
+
     //Getting task
     $(document).on('click', '.task-link', function() {
         var link = $(this);
@@ -71,34 +78,39 @@ $(function() {
     });
 
     //Updating task
-    $(document).on('click', '.edit-task', function() {
-        var result = confirm('Вы точно хотите перезаписать данные?');
-        if (result) {
-            var link = $(this);
-            console.log(this);
-            console.log(link);
-            var taskId = link.data('id');
-            $('#task-form').css('display', 'flex');
-            var data = $('#task-form form').serialize();
-            console.log(data)
-            $.ajax({
-                method: 'PUT',
-                url: '/tasks/' + taskId,
-                data: data,
-                success: function(response) {
-                    $('#task-form').css('display', 'none');
-                    var task = {};
-                    task.id = taskId;
-                    var dataArray = $('#task-form form').serializeArray();
-                    for (i in dataArray) {
-                        task[dataArray[i]['name']] = dataArray[i]['value'];
+    //Show changing task form
+    $('.edit-task').click(function() {
+        $('#change-task-form').css('display', 'flex');
+        var link = $(this);
+        console.log(this);
+        console.log(link);
+        var taskId = link.data('id');
+        console.log(taskId)
+        $(document).on('click', '#save-changed-task', function() {
+            var result = confirm('Вы точно хотите перезаписать данные?');
+            if (result) {
+                //
+                var data = $('#change-task-form form').serialize();
+                console.log(data)
+                $.ajax({
+                    method: 'PUT',
+                    url: '/tasks/' + taskId,
+                    data: data,
+                    success: function(response) {
+                        $('#task-form').css('display', 'none');
+                        var task = {};
+                        task.id = taskId;
+                        var dataArray = $('#change-task-form form').serializeArray();
+                        for (i in dataArray) {
+                            task[dataArray[i]['name']] = dataArray[i]['value'];
+                        }
+                        appendTask(task);
+                        window.location.reload();
                     }
-                    //appendTask(task);
-                    //window.location.reload();
-                }
-            });
-        }
-        return false;
+                });
+            }
+            return false;
+        });
     });
 
     //Deleting task

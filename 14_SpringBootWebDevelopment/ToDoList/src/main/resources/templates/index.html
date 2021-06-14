@@ -29,6 +29,21 @@
             <button type="submit" id="save-task">Сохранить</button>
         </form>
     </div>
+    <div id="change-task-form">
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <h2>Изменение дела</h2>
+            <label>new Deadline:</label>
+            <input type="text" name="deadline" value="" placeholder="дата в формате ДД.ММ.ГГГГ">
+            <hr>
+            <label>Новое ответственное лицо:</label>
+            <input type="text" name="responsiblePerson" value="" placeholder="Имя">
+            <hr>
+            <label>Новое описание задачи:</label>
+            <input type="text" name="taskName" value="" placeholder="Осмысленный текст">
+            <hr>
+            <button type="submit" id="save-changed-task">Сохранить изменения</button>
+        </form>
+    </div>
     <h1>Список дел (<span th:text="${tasksCount}">0</span>)</h1>
     <button id="show-add-task-form">Добавить дело</button>
     <br><br>
