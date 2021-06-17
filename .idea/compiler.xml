@@ -86,6 +86,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ToDoList" options="-parameters" />
       <module name="bookLibrary" options="-parameters" />
     </option>
   </component>

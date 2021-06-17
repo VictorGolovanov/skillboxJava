@@ -14,7 +14,7 @@ import java.util.Comparator;
 public class DefaultController {
 
     @Autowired
-    TaskRepository taskRepository;
+    private TaskRepository taskRepository;
 
     @RequestMapping("/")
     public String index(Model model){
