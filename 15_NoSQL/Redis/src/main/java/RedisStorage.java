@@ -7,7 +7,6 @@ import org.redisson.config.Config;
 
 public class RedisStorage
 {
-
     private RedissonClient client;
     private RScoredSortedSet<String> onlineUsers;
     private final static String KEY = "ONLINE_USERS";
@@ -38,7 +37,7 @@ public class RedisStorage
         onlineUsers.add(getTime(), String.valueOf(userId));
     }
 
-    public int showedUser() {
+    public int donateUser() {
         int userId = Integer.parseInt(onlineUsers.pollFirst());
         singIn(userId);
         return userId;
@@ -46,6 +45,6 @@ public class RedisStorage
 
     public void pay(int userId) {
         onlineUsers.add(0, String.valueOf(userId));
-        System.out.println("Пользователь " + userId + " оплатил услугу.");
+        System.out.println("Пользователь " + donateUser() + " оплатил услугу.");
     }
 }

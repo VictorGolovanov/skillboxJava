@@ -12,7 +12,7 @@ public class RedisStart
         while (true) {
             if ((int) (Math.random() * 10) == 1)
                 storage.pay((int) (Math.random() * 20) + 1);
-            System.out.println("На главной странице показываем пользователя № " + storage.showedUser());
+            System.out.println("На главной странице показываем пользователя № " + storage.donateUser());
             Thread.sleep(1000);
         }
     }
