@@ -32,6 +32,7 @@
         <module name="LambdaExpressions7.1" />
         <module name="LambdaExpressions7.2-Employee" />
         <module name="folder-copy" />
+        <module name="Redis" />
         <module name="ImagesDownloadFromSite" />
         <module name="EmailList" />
         <module name="spb-metro" />
@@ -72,6 +73,7 @@
       <module name="PhoneBook" target="11" />
       <module name="PhoneCleaner" target="11" />
       <module name="read-movements-csv" target="11" />
+      <module name="Redis" target="11" />
       <module name="SimpleHibernate" target="1.8" />
       <module name="spb-metro" target="11" />
       <module name="SplitText" target="11" />
