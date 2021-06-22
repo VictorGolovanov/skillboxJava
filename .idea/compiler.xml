@@ -42,6 +42,7 @@
         <module name="Inheritance1" />
         <module name="CoolNumber" />
         <module name="Inheritance3" />
+        <module name="MongoDB" />
         <module name="TodoList" />
       </profile>
     </annotationProcessing>
@@ -69,6 +70,7 @@
       <module name="MaskingInformation" target="11" />
       <module name="MaskingInformationReqExp" target="11" />
       <module name="min_max_values" target="1.5" />
+      <module name="MongoDB" target="11" />
       <module name="MoscowMetroParser" target="11" />
       <module name="PhoneBook" target="11" />
       <module name="PhoneCleaner" target="11" />
