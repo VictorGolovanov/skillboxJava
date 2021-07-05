@@ -20,6 +20,7 @@
         <module name="read-movements-csv" />
         <module name="LambdaExpressions7.2-Airport" />
         <module name="MaskingInformation" />
+        <module name="SaleLogistic" />
         <module name="TrucksContainersAndBoxes" />
         <module name="FullNameFormatter" />
         <module name="01_sumdigits" />
@@ -76,6 +77,7 @@
       <module name="PhoneCleaner" target="11" />
       <module name="read-movements-csv" target="11" />
       <module name="Redis" target="11" />
+      <module name="SaleLogistic" target="11" />
       <module name="SimpleHibernate" target="1.8" />
       <module name="spb-metro" target="11" />
       <module name="SplitText" target="11" />
