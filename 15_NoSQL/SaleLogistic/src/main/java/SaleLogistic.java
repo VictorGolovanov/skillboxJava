@@ -38,7 +38,6 @@ public class SaleLogistic {
     private MongoDatabase database;
     private MongoCollection<Document> stores;
     private MongoCollection<Document> products;
-    //static JsonWriterSettings writerSettings = new JsonWriterSettings(JsonMode.SHELL, true);
 
     // Singleton? Why not?
     private SaleLogistic(String HOST, int PORT, String DB) {
