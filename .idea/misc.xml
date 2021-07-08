@@ -42,6 +42,7 @@
         <option value="$PROJECT_DIR$/15_NoSQL/Redis/pom.xml" />
         <option value="$PROJECT_DIR$/15_NoSQL/MongoDB/pom.xml" />
         <option value="$PROJECT_DIR$/15_NoSQL/SaleLogistic/pom.xml" />
+        <option value="$PROJECT_DIR$/19_Performance/CarNumberGenerator/pom.xml" />
       </list>
     </option>
   </component>

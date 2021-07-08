@@ -1,7 +1,7 @@
 import java.io.FileOutputStream;
 
-public class Loader {
-
+public class DefaultGenerator
+{
     public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
 
@@ -14,7 +14,7 @@ public class Loader {
                 for (char secondLetter : letters) {
                     for (char thirdLetter : letters) {
                         String carNumber = firstLetter + padNumber(number, 3) +
-                            secondLetter + thirdLetter + padNumber(regionCode, 2);
+                                secondLetter + thirdLetter + padNumber(regionCode, 2);
                         writer.write(carNumber.getBytes());
                         writer.write('\n');
                     }
@@ -28,6 +28,7 @@ public class Loader {
         System.out.println((System.currentTimeMillis() - start) + " ms");
     }
 
+
     private static String padNumber(int number, int numberLength) {
         String numberStr = Integer.toString(number);
         int padSize = numberLength - numberStr.length();
@@ -38,4 +39,5 @@ public class Loader {
 
         return numberStr;
     }
+
 }
